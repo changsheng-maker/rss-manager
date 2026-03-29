@@ -16,14 +16,22 @@ class HTMLReportGenerator:
         title: str,
         subtitle: str,
         items: List[Dict],
-        theme: str = "dark"
+        lang: str = "zh"
     ) -> str:
         """Generate premium dark theme HTML report for GitHub trending."""
         css = self._get_css()
         cards_html = self._generate_cards(items)
 
+        # i18n
+        is_zh = lang == "zh"
+        lang_label = "语言" if is_zh else "Language"
+        stars_label = "星" if is_zh else "stars"
+        per_day = "/天" if is_zh else "/day"
+        generated = "生成于" if is_zh else "Generated at"
+        repos_label = "个仓库" if is_zh else "repos"
+
         return f"""<!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="{lang}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -44,7 +52,7 @@ class HTMLReportGenerator:
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
                     <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
                 </svg>
-                Trending
+                {"热门仓库" if is_zh else "Trending"}
             </div>
             <h1 class="title">{html.escape(title)}</h1>
             <p class="subtitle">{html.escape(subtitle)}</p>
@@ -62,14 +70,36 @@ class HTMLReportGenerator:
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/>
                     </svg>
-                    {len(items)} repositories
+                    {len(items)} {repos_label}
                 </span>
+                <button class="lang-toggle" onclick="toggleLang()">{("EN" if is_zh else "中文")}</button>
             </div>
         </header>
         <main class="cards-grid">
             {cards_html}
         </main>
+        <footer class="footer">
+            <p>{generated} {datetime.now().strftime('%Y-%m-%d %H:%M')}</p>
+        </footer>
     </div>
+    <script>
+    function toggleLang() {{
+        const html = document.documentElement;
+        const current = html.lang;
+        const isZh = current === 'zh';
+        html.lang = isZh ? 'en' : 'zh';
+        document.querySelector('.lang-toggle').textContent = isZh ? '中文' : 'EN';
+
+        // Update static text
+        const badge = document.querySelector('.badge');
+        badge.innerHTML = `<svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>` + (isZh ? 'Trending' : '热门仓库');
+
+        document.querySelector('.lang-toggle').textContent = isZh ? '中文' : 'EN';
+
+        // Update footer
+        document.querySelector('.footer p').textContent = (isZh ? 'Generated at' : '生成于') + ' ' + new Date().toLocaleString();
+    }}
+    </script>
 </body>
 </html>"""
 
@@ -360,6 +390,33 @@ class HTMLReportGenerator:
         .tag:hover {
             border-color: var(--accent);
             color: var(--accent);
+        }
+
+        .lang-toggle {
+            background: var(--bg-alt);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            color: var(--text-2);
+            font-size: 12px;
+            font-weight: 600;
+            padding: 6px 12px;
+            cursor: pointer;
+            transition: all 0.15s;
+            font-family: 'IBM Plex Mono', monospace;
+        }
+
+        .lang-toggle:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 32px;
+            color: var(--text-3);
+            font-size: 13px;
+            border-top: 1px solid var(--border);
+            margin-top: 48px;
         }
         """
 
