@@ -71,7 +71,7 @@ def fetch_github_trending(language: str = "", since: str = "daily") -> list:
     print(f"Fetching GitHub trending: {language or 'all'} ({since})...")
 
     try:
-        feed = feedparser.parse(url, timeout=10)
+        feed = feedparser.parse(url)
         if feed.entries and len(feed.entries) > 0:
             return parse_rsshub_entries(feed.entries)
     except Exception as e:
@@ -135,8 +135,8 @@ def fetch_with_star_velocity(language: str = "", since: str = "daily") -> list:
     else:
         date_from = (now - timedelta(days=30)).strftime("%Y-%m-%d")
 
-    # Query for recently active repos
-    query_parts = [f"pushed:>{date_from}", "stars:>100"]
+    # Query for popular repos with good velocity metrics
+    query_parts = ["stars:>500"]
     if language:
         query_parts.append(f"language:{language}")
 

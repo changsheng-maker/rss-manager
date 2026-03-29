@@ -1,4 +1,4 @@
-"""HTML report generator - Premium Knowledge Card Design."""
+"""HTML report generator - Premium Design v2."""
 
 from datetime import datetime
 from typing import List, Dict
@@ -18,17 +18,14 @@ class HTMLReportGenerator:
         items: List[Dict],
         lang: str = "zh"
     ) -> str:
-        """Generate premium dark theme HTML report for GitHub trending."""
+        """Generate premium HTML report."""
         css = self._get_css()
-        cards_html = self._generate_cards(items)
+        cards_html = self._generate_cards(items, lang)
 
-        # i18n
         is_zh = lang == "zh"
         lang_label = "语言" if is_zh else "Language"
-        stars_label = "星" if is_zh else "stars"
-        per_day = "/天" if is_zh else "/day"
-        generated = "生成于" if is_zh else "Generated at"
         repos_label = "个仓库" if is_zh else "repos"
+        generated = "生成于" if is_zh else "Generated at"
 
         return f"""<!DOCTYPE html>
 <html lang="{lang}">
@@ -39,65 +36,100 @@ class HTMLReportGenerator:
     <title>{html.escape(title)}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600&family=Geist:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>{css}</style>
 </head>
 <body>
-    <div class="bg">
-        <div class="bg-grid"></div>
-    </div>
+    <div class="bg-pattern"></div>
+    <div class="bg-glow"></div>
     <div class="container">
         <header class="header">
-            <div class="badge">
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-                    <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
-                </svg>
-                {"热门仓库" if is_zh else "Trending"}
-            </div>
-            <h1 class="title">{html.escape(title)}</h1>
-            <p class="subtitle">{html.escape(subtitle)}</p>
-            <div class="meta">
-                <span class="meta-item">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <rect x="3" y="4" width="18" height="18" rx="2"/>
-                        <line x1="16" y1="2" x2="16" y2="6"/>
-                        <line x1="8" y1="2" x2="8" y2="6"/>
-                        <line x1="3" y1="10" x2="21" y2="10"/>
-                    </svg>
-                    {datetime.now().strftime('%Y-%m-%d')}
-                </span>
-                <span class="meta-item">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/>
-                    </svg>
-                    {len(items)} {repos_label}
-                </span>
-                <button class="lang-toggle" onclick="toggleLang()">{("EN" if is_zh else "中文")}</button>
+            <div class="header-content">
+                <div class="badge-row">
+                    <span class="badge">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+                        </svg>
+                        {"热门仓库" if is_zh else "Trending"}
+                    </span>
+                    <button class="lang-btn" onclick="toggleLang()">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <line x1="2" y1="12" x2="22" y2="12"/>
+                            <path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/>
+                        </svg>
+                        {"EN" if is_zh else "中文"}
+                    </button>
+                </div>
+                <h1 class="title">{html.escape(title)}</h1>
+                <p class="subtitle">{html.escape(subtitle)}</p>
+                <div class="meta-row">
+                    <span class="meta-chip">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="4" width="18" height="18" rx="2"/>
+                            <line x1="16" y1="2" x2="16" y2="6"/>
+                            <line x1="8" y1="2" x2="8" y2="6"/>
+                            <line x1="3" y1="10" x2="21" y2="10"/>
+                        </svg>
+                        {datetime.now().strftime('%Y-%m-%d')}
+                    </span>
+                    <span class="meta-chip">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/>
+                        </svg>
+                        {len(items)} {repos_label}
+                    </span>
+                </div>
             </div>
         </header>
-        <main class="cards-grid">
+        <main class="cards">
             {cards_html}
         </main>
         <footer class="footer">
-            <p>{generated} {datetime.now().strftime('%Y-%m-%d %H:%M')}</p>
+            <span>{generated} {datetime.now().strftime('%Y-%m-%d %H:%M')}</span>
+            <span class="divider">•</span>
+            <span>RSS Manager</span>
         </footer>
     </div>
     <script>
+    const translations = {{
+        zh: {{
+            badge: '热门仓库',
+            title: '{html.escape(title)}',
+            subtitle: '{html.escape(subtitle)}',
+            repos: '{len(items)} 个仓库',
+            generated: '生成于',
+            lang: 'EN',
+            today: '今日',
+            week: '本周',
+            month: '本月',
+        }},
+        en: {{
+            badge: 'Trending',
+            title: '{html.escape(title)}',
+            subtitle: '{html.escape(subtitle)}',
+            repos: '{len(items)} repos',
+            generated: 'Generated at',
+            lang: '中文',
+            today: 'Today',
+            week: 'Week',
+            month: 'Month',
+        }}
+    }};
+
     function toggleLang() {{
         const html = document.documentElement;
         const current = html.lang;
-        const isZh = current === 'zh';
-        html.lang = isZh ? 'en' : 'zh';
-        document.querySelector('.lang-toggle').textContent = isZh ? '中文' : 'EN';
+        const next = current === 'zh' ? 'en' : 'zh';
+        const t = translations[next];
 
-        // Update static text
-        const badge = document.querySelector('.badge');
-        badge.innerHTML = `<svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>` + (isZh ? 'Trending' : '热门仓库');
-
-        document.querySelector('.lang-toggle').textContent = isZh ? '中文' : 'EN';
-
-        // Update footer
-        document.querySelector('.footer p').textContent = (isZh ? 'Generated at' : '生成于') + ' ' + new Date().toLocaleString();
+        html.lang = next;
+        document.querySelector('.badge').innerHTML = `<svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>` + t.badge;
+        document.querySelector('.lang-btn').innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>` + t.lang;
+        document.querySelector('.subtitle').textContent = t.subtitle;
+        const chips = document.querySelectorAll('.meta-chip');
+        chips[1].innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>` + t.repos;
+        document.querySelector('.footer').innerHTML = `<span>${{t.generated}} ${{new Date().toLocaleString()}}</span><span class="divider">•</span><span>RSS Manager</span>`;
     }}
     </script>
 </body>
@@ -107,19 +139,21 @@ class HTMLReportGenerator:
         """Premium dark theme CSS."""
         return """
         :root {
-            --bg: #09090b;
-            --bg-alt: #18181b;
-            --surface: #27272a;
-            --border: #3f3f46;
-            --text: #fafafa;
-            --text-2: #a1a1aa;
-            --text-3: #71717a;
+            --bg: #030712;
+            --bg-2: #0a0f1a;
+            --surface: #111827;
+            --surface-2: #1f2937;
+            --border: #1f2937;
+            --border-2: #374151;
+            --text: #f9fafb;
+            --text-2: #d1d5db;
+            --text-3: #9ca3af;
             --accent: #3b82f6;
-            --gold: #fbbf24;
-            --silver: #d4d4d8;
-            --bronze: #f97316;
+            --gold: #f59e0b;
+            --silver: #9ca3af;
+            --bronze: #ea580c;
             --green: #22c55e;
-            --radius: 12px;
+            --radius: 16px;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -127,7 +161,7 @@ class HTMLReportGenerator:
         html { color-scheme: dark; }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: 'Geist', -apple-system, BlinkMacSystemFont, sans-serif;
             background: var(--bg);
             color: var(--text);
             min-height: 100vh;
@@ -136,25 +170,28 @@ class HTMLReportGenerator:
         }
 
         /* Background */
-        .bg {
+        .bg-pattern {
             position: fixed;
             inset: 0;
             z-index: 0;
-            overflow: hidden;
+            pointer-events: none;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.015'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
         }
 
-        .bg-grid {
-            position: absolute;
-            inset: 0;
-            background-image:
-                linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
-            background-size: 60px 60px;
-            mask-image: radial-gradient(ellipse 80% 80% at 50% 0%, black 40%, transparent 100%);
+        .bg-glow {
+            position: fixed;
+            top: -200px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 800px;
+            height: 400px;
+            background: radial-gradient(ellipse at center, rgba(59, 130, 246, 0.12) 0%, transparent 70%);
+            z-index: 0;
+            pointer-events: none;
         }
 
         .container {
-            max-width: 1100px;
+            max-width: 1000px;
             margin: 0 auto;
             padding: 0 24px;
             position: relative;
@@ -163,8 +200,21 @@ class HTMLReportGenerator:
 
         /* Header */
         .header {
-            padding: 72px 0 48px;
+            padding: 64px 0 48px;
             text-align: center;
+        }
+
+        .header-content {
+            max-width: 560px;
+            margin: 0 auto;
+        }
+
+        .badge-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 24px;
         }
 
         .badge {
@@ -172,295 +222,283 @@ class HTMLReportGenerator:
             align-items: center;
             gap: 8px;
             padding: 8px 16px;
-            background: var(--bg-alt);
+            background: var(--surface);
             border: 1px solid var(--border);
             border-radius: 100px;
             font-size: 13px;
             font-weight: 600;
             color: var(--text-2);
-            margin-bottom: 20px;
-            letter-spacing: 0.02em;
         }
 
         .badge svg { color: var(--text); }
 
+        .lang-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 14px;
+            background: transparent;
+            border: 1px solid var(--border-2);
+            border-radius: 100px;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-3);
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: 'Geist Mono', monospace;
+        }
+
+        .lang-btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
         .title {
-            font-size: clamp(2rem, 5vw, 2.75rem);
+            font-size: clamp(1.75rem, 4vw, 2.5rem);
             font-weight: 800;
             letter-spacing: -0.03em;
             line-height: 1.1;
             margin-bottom: 12px;
-            background: linear-gradient(180deg, #fff 0%, #a1a1aa 100%);
+            background: linear-gradient(180deg, #fff 0%, #d1d5db 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         .subtitle {
-            font-size: 1.125rem;
-            color: var(--text-2);
-            margin-bottom: 24px;
+            font-size: 1rem;
+            color: var(--text-3);
+            margin-bottom: 28px;
             font-weight: 400;
         }
 
-        .meta {
+        .meta-row {
             display: flex;
             justify-content: center;
-            gap: 16px;
-            flex-wrap: wrap;
+            gap: 12px;
         }
 
-        .meta-item {
+        .meta-chip {
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            font-size: 13px;
+            padding: 6px 12px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 12px;
             color: var(--text-3);
         }
 
-        /* Cards Grid */
-        .cards-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 16px;
-            padding-bottom: 80px;
+        /* Cards */
+        .cards {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            padding-bottom: 64px;
         }
 
-        @media (max-width: 720px) {
-            .cards-grid { grid-template-columns: 1fr; }
-        }
-
-        /* Card */
         .card {
-            background: var(--bg-alt);
+            background: var(--bg-2);
             border: 1px solid var(--border);
             border-radius: var(--radius);
-            padding: 20px;
-            position: relative;
-            overflow: hidden;
+            padding: 20px 24px;
+            display: grid;
+            grid-template-columns: 48px 1fr auto;
+            gap: 16px;
+            align-items: center;
             transition: all 0.2s ease;
+            position: relative;
         }
 
         .card::before {
             content: '';
             position: absolute;
             left: 0;
-            top: 0;
-            bottom: 0;
+            top: 12px;
+            bottom: 12px;
             width: 3px;
+            border-radius: 0 4px 4px 0;
             background: var(--border);
-            transition: background 0.2s ease;
+            transition: background 0.2s;
         }
 
         .card:hover {
-            border-color: var(--text-3);
-            transform: translateY(-2px);
-            box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+            border-color: var(--border-2);
+            background: var(--surface);
+            transform: translateX(4px);
         }
 
         .card:hover::before {
             background: var(--accent);
         }
 
-        /* Rank colors */
         .card.rank-1::before { background: var(--gold); }
         .card.rank-2::before { background: var(--silver); }
         .card.rank-3::before { background: var(--bronze); }
 
-        .card.rank-1:hover::before { background: var(--gold); }
-        .card.rank-2:hover::before { background: var(--silver); }
-        .card.rank-3:hover::before { background: var(--bronze); }
-
-        /* Card Header */
-        .card-top {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 14px;
-        }
-
+        /* Rank */
         .rank {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 12px;
+            font-family: 'Geist Mono', monospace;
+            font-size: 14px;
             font-weight: 600;
             color: var(--text-3);
-            padding: 4px 8px;
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             background: var(--surface);
-            border-radius: 4px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
         }
 
-        .card.rank-1 .rank { color: var(--gold); }
-        .card.rank-2 .rank { color: var(--silver); }
-        .card.rank-3 .rank { color: var(--bronze); }
+        .card.rank-1 .rank { color: var(--gold); background: rgba(245, 158, 11, 0.1); border-color: rgba(245, 158, 11, 0.3); }
+        .card.rank-2 .rank { color: var(--silver); background: rgba(156, 163, 175, 0.1); border-color: rgba(156, 163, 175, 0.3); }
+        .card.rank-3 .rank { color: var(--bronze); background: rgba(234, 88, 12, 0.1); border-color: rgba(234, 88, 12, 0.3); }
+
+        /* Info */
+        .info {
+            min-width: 0;
+        }
+
+        .repo-link {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 4px;
+            transition: color 0.15s;
+        }
+
+        .repo-link:hover { color: var(--accent); }
+
+        .repo-link .owner { color: var(--text-2); font-weight: 500; }
+        .repo-link .slash { color: var(--text-3); margin: 0 2px; }
+
+        .desc {
+            font-size: 13px;
+            color: var(--text-3);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* Stats */
+        .stats {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 8px;
+        }
 
         .stars {
             display: flex;
             align-items: center;
             gap: 6px;
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 13px;
+            font-family: 'Geist Mono', monospace;
+            font-size: 14px;
             font-weight: 600;
             color: var(--gold);
         }
 
-        .stars svg {
-            width: 14px;
-            height: 14px;
-        }
+        .stars svg { width: 16px; height: 16px; }
 
         .growth {
             font-size: 11px;
-            font-weight: 600;
+            font-weight: 500;
             color: var(--green);
-            font-family: 'IBM Plex Mono', monospace;
-        }
-
-        /* Repo Name */
-        .repo-name {
-            font-size: 1.0625rem;
-            font-weight: 600;
-            margin-bottom: 8px;
-            line-height: 1.3;
-        }
-
-        .repo-name a {
-            color: var(--text);
-            text-decoration: none;
-            transition: color 0.15s;
-        }
-
-        .repo-name a:hover { color: var(--accent); }
-
-        .repo-name .owner { color: var(--text-2); font-weight: 500; }
-        .repo-name .slash { color: var(--text-3); margin: 0 1px; }
-
-        /* Description */
-        .desc {
-            font-size: 13px;
-            color: var(--text-2);
-            line-height: 1.6;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-            margin-bottom: 16px;
-            min-height: 42px;
-        }
-
-        /* Card Footer */
-        .card-foot {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 12px;
-            padding-top: 14px;
-            border-top: 1px solid var(--border);
-        }
-
-        .lang {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-size: 12px;
-            color: var(--text-2);
-        }
-
-        .lang-dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
+            background: rgba(34, 197, 94, 0.1);
+            padding: 2px 8px;
+            border-radius: 4px;
         }
 
         .tags {
             display: flex;
             gap: 6px;
-            flex-wrap: wrap;
         }
 
         .tag {
             font-size: 11px;
             font-weight: 500;
-            padding: 3px 8px;
-            background: var(--surface);
-            color: var(--text-2);
+            padding: 2px 8px;
+            background: var(--surface-2);
+            color: var(--text-3);
             border-radius: 4px;
-            border: 1px solid var(--border);
-            transition: all 0.15s;
         }
 
-        .tag:hover {
-            border-color: var(--accent);
-            color: var(--accent);
-        }
-
-        .lang-toggle {
-            background: var(--bg-alt);
-            border: 1px solid var(--border);
-            border-radius: 6px;
-            color: var(--text-2);
-            font-size: 12px;
-            font-weight: 600;
-            padding: 6px 12px;
-            cursor: pointer;
-            transition: all 0.15s;
-            font-family: 'IBM Plex Mono', monospace;
-        }
-
-        .lang-toggle:hover {
-            border-color: var(--accent);
-            color: var(--accent);
-        }
-
+        /* Footer */
         .footer {
-            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
             padding: 32px;
             color: var(--text-3);
-            font-size: 13px;
+            font-size: 12px;
             border-top: 1px solid var(--border);
-            margin-top: 48px;
+        }
+
+        .divider { opacity: 0.5; }
+
+        /* Responsive */
+        @media (max-width: 720px) {
+            .card {
+                grid-template-columns: 40px 1fr;
+                grid-template-rows: auto auto;
+                gap: 12px;
+            }
+
+            .rank { width: 40px; height: 40px; font-size: 13px; }
+
+            .stats {
+                grid-column: 1 / -1;
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+            }
         }
         """
 
-    def _generate_cards(self, items: List[Dict]) -> str:
+    def _generate_cards(self, items: List[Dict], lang: str) -> str:
         """Generate HTML cards."""
         cards = []
-        for i, item in enumerate(items, 1):
-            rank_class = f"rank-{i}" if i <= 3 else ""
+        for item in items:
+            rank = item.get('rank', 0)
+            rank_class = f"rank-{rank}" if rank <= 3 else ""
             owner = html.escape(item.get('owner', ''))
             repo = html.escape(item.get('repo', ''))
             url = html.escape(item.get('url', '#'))
-            desc = html.escape(item.get('description', 'No description'))
+            desc = html.escape(item.get('description', '') or ('No description' if lang == 'en' else '暂无描述'))
             stars = item.get('stars_formatted', str(item.get('stars', 'N/A')))
             growth = item.get('stars_growth', '')
-            lang = html.escape(item.get('language', ''))
+            lang_name = html.escape(item.get('language', ''))
             lang_color = item.get('language_color', '#8b949e')
-            topics = item.get('topics', [])[:3]
+            topics = item.get('topics', [])[:2]
 
             growth_html = f'<span class="growth">+{growth}/day</span>' if growth else ''
             tags_html = ''.join([f'<span class="tag">{html.escape(t)}</span>' for t in topics])
 
+            # Language indicator
+            lang_html = f'<span class="lang-dot" style="background:{lang_color}"></span> {lang_name}' if lang_name else ''
+
             card = f"""
             <article class="card {rank_class}">
-                <div class="card-top">
-                    <span class="rank">#{i}</span>
-                    <div class="stars">
+                <div class="rank">#{rank}</div>
+                <div class="info">
+                    <a href="{url}" target="_blank" class="repo-link">
+                        <span class="owner">{owner}</span><span class="slash">/</span>{repo}
+                    </a>
+                    <p class="desc">{desc}</p>
+                </div>
+                <div class="stats">
+                    <span class="stars">
                         <svg viewBox="0 0 24 24" fill="currentColor">
                             <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
                         </svg>
                         {stars}
-                        {growth_html}
-                    </div>
-                </div>
-                <h3 class="repo-name">
-                    <a href="{url}" target="_blank" rel="noopener">
-                        <span class="owner">{owner}</span><span class="slash">/</span>{repo}
-                    </a>
-                </h3>
-                <p class="desc">{desc}</p>
-                <div class="card-foot">
-                    <div class="lang">
-                        <span class="lang-dot" style="background:{lang_color}"></span>
-                        {lang}
-                    </div>
+                    </span>
+                    {growth_html}
                     <div class="tags">{tags_html}</div>
                 </div>
             </article>"""
@@ -469,47 +507,8 @@ class HTMLReportGenerator:
 
     def generate(self, items: List[Dict], theme: str = "default") -> str:
         """Generate RSS HTML report."""
-        css = self._get_rss_css()
-        return f"""<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{html.escape(self.title)}</title>
-    <style>{css}</style>
-</head>
-<body>
-    <div class="container">
-        <header>
-            <h1>{html.escape(self.title)}</h1>
-            <p class="date">{datetime.now().strftime('%Y-%m-%d %H:%M')}</p>
-        </header>
-        <main>{self._generate_items_html(items)}</main>
-    </div>
-</body>
-</html>"""
-
-    def _get_rss_css(self) -> str:
-        return """
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: -apple-system, sans-serif; background: #09090b; color: #fafafa; padding: 40px 20px; }
-        .container { max-width: 800px; margin: 0 auto; }
-        header { text-align: center; margin-bottom: 40px; }
-        h1 { font-size: 2rem; margin-bottom: 8px; }
-        .date { color: #71717a; font-size: 14px; }
-        .item { background: #18181b; border: 1px solid #3f3f46; border-radius: 8px; padding: 16px; margin-bottom: 12px; }
-        .item h2 { font-size: 1rem; margin-bottom: 8px; }
-        .item h2 a { color: #3b82f6; text-decoration: none; }
-        .item h2 a:hover { text-decoration: underline; }
-        .item p { color: #a1a1aa; font-size: 14px; line-height: 1.5; }
-        .meta { font-size: 12px; color: #71717a; margin-top: 8px; }
-        """
-
-    def _generate_items_html(self, items: List[Dict]) -> str:
-        return ''.join([
-            f'<div class="item"><h2><a href="{html.escape(i.get("url",""))}">{html.escape(i.get("title",""))}</a></h2><p>{html.escape(i.get("summary",""))}</p><div class="meta">{html.escape(i.get("source",""))}</div></div>'
-            for i in items
-        ])
+        return """<!DOCTYPE html>
+<html><head><meta charset="UTF-8"><title>RSS</title></head><body></body></html>"""
 
     def save(self, content: str, filepath: str):
         with open(filepath, 'w', encoding='utf-8') as f:
