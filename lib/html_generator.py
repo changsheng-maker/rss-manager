@@ -1,4 +1,4 @@
-"""HTML report generator for RSS content - Modern Dark Theme Version."""
+"""HTML report generator for RSS content - GitHub-Inspired Dark Theme."""
 
 from datetime import datetime
 from typing import List, Dict
@@ -19,12 +19,10 @@ class HTMLReportGenerator:
         theme: str = "dark"
     ) -> str:
         """
-        Generate a stunning dark-themed HTML report for GitHub trending repositories.
-        Inspired by modern dev tools design with glassmorphism effects.
+        Generate a GitHub-inspired dark themed HTML report for trending repositories.
+        Uses GitHub's actual design language: dark backgrounds, green primary, blue accent.
         """
         css = self._get_github_css()
-
-        # Generate cards HTML
         cards_html = self._generate_github_cards(items)
 
         html_content = f"""<!DOCTYPE html>
@@ -32,20 +30,47 @@ class HTMLReportGenerator:
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="dark">
     <title>{html.escape(title)}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>{css}</style>
 </head>
 <body>
-    <div class="page-background"></div>
-    <div class="noise-overlay"></div>
+    <div class="page-bg">
+        <div class="bg-gradient"></div>
+    </div>
     <div class="container">
         <header class="report-header">
-            <div class="header-badge">🔥 GitHub Trending</div>
-            <h1 class="main-title">{html.escape(title)}</h1>
-            <p class="subtitle">{html.escape(subtitle)}</p>
-            <div class="meta-info">
-                <span class="meta-item">📅 {datetime.now().strftime('%Y年%m月%d日')}</span>
-                <span class="meta-item">📊 共 {len(items)} 个项目</span>
+            <div class="header-inner">
+                <div class="header-badge">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                        <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+                    </svg>
+                    Trending Repositories
+                </div>
+                <h1 class="main-title">{html.escape(title)}</h1>
+                <p class="subtitle">{html.escape(subtitle)}</p>
+                <div class="meta-row">
+                    <span class="meta-chip">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                            <line x1="16" y1="2" x2="16" y2="6"></line>
+                            <line x1="8" y1="2" x2="8" y2="6"></line>
+                            <line x1="3" y1="10" x2="21" y2="10"></line>
+                        </svg>
+                        {datetime.now().strftime('%Y年%m月%d日')}
+                    </span>
+                    <span class="meta-chip">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 20V10"></path>
+                            <path d="M18 20V4"></path>
+                            <path d="M6 20v-4"></path>
+                        </svg>
+                        {len(items)} projects
+                    </span>
+                </div>
             </div>
         </header>
         <main class="cards-grid">
@@ -60,28 +85,33 @@ class HTMLReportGenerator:
         return html_content
 
     def _get_github_css(self) -> str:
-        """Get stunning dark theme CSS with knowledge card design."""
+        """Get GitHub-inspired dark theme CSS."""
         return """
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
-
         :root {
-            --bg-primary: #0f0f1a;
-            --bg-secondary: #16162a;
-            --bg-card: rgba(30, 30, 56, 0.6);
-            --bg-card-hover: rgba(40, 40, 72, 0.8);
-            --border-color: rgba(255, 255, 255, 0.08);
-            --border-hover: rgba(255, 255, 255, 0.15);
-            --text-primary: #f8fafc;
-            --text-secondary: #94a3b8;
-            --text-muted: #64748b;
-            --accent-gold: #fbbf24;
-            --accent-silver: #e2e8f0;
-            --accent-bronze: #f97316;
-            --accent-blue: #3b82f6;
-            --accent-green: #22c55e;
-            --accent-purple: #8b5cf6;
-            --accent-pink: #ec4899;
-            --accent-cyan: #06b6d4;
+            /* GitHub Dark Color System */
+            --bg-primary: #0d1117;
+            --bg-secondary: #161b22;
+            --bg-tertiary: #21262d;
+            --bg-elevated: #30363d;
+            --border-default: #30363d;
+            --border-muted: #21262d;
+            --text-primary: #e6edf3;
+            --text-secondary: #8b949e;
+            --text-tertiary: #6e7681;
+            --accent-fg: #58a6ff;
+            --accent-emphasis: #1f6feb;
+            --success-fg: #3fb950;
+            --success-emphasis: #238636;
+            --warning-fg: #d29922;
+            --danger-fg: #f85149;
+            --gold: #e3b341;
+            --silver: #a5b4fc;
+            --bronze: #f97316;
+            --radius-sm: 6px;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --font-mono: 'JetBrains Mono', 'SF Mono', Consolas, monospace;
         }
 
         * {
@@ -90,322 +120,288 @@ class HTMLReportGenerator:
             box-sizing: border-box;
         }
 
+        html {
+            color-scheme: dark;
+        }
+
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-family: var(--font-sans);
             background: var(--bg-primary);
             color: var(--text-primary);
             min-height: 100vh;
             line-height: 1.6;
-            position: relative;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
-        /* Animated mesh gradient background */
-        .page-background {
+        /* Page Background */
+        .page-bg {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
+            inset: 0;
             z-index: 0;
             overflow: hidden;
-            background:
-                radial-gradient(ellipse at 20% 20%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
-                radial-gradient(ellipse at 80% 80%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
-                radial-gradient(ellipse at 50% 50%, rgba(236, 72, 153, 0.08) 0%, transparent 60%);
+            pointer-events: none;
         }
 
-        .noise-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
-            opacity: 0.03;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+        .bg-gradient {
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 80% 50% at 50% -20%, rgba(31, 111, 235, 0.15) 0%, transparent 60%),
+                radial-gradient(ellipse 60% 40% at 100% 100%, rgba(63, 185, 80, 0.08) 0%, transparent 50%);
         }
 
         .container {
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 48px 24px;
+            padding: 0 24px;
             position: relative;
-            z-index: 2;
+            z-index: 1;
         }
 
-        /* Header Styles */
+        /* Header */
         .report-header {
+            padding: 80px 0 48px;
             text-align: center;
-            padding: 64px 20px;
-            margin-bottom: 48px;
-            position: relative;
+        }
+
+        .header-inner {
+            max-width: 640px;
+            margin: 0 auto;
         }
 
         .header-badge {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            padding: 10px 24px;
-            background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(59, 130, 246, 0.2));
-            border: 1px solid rgba(139, 92, 246, 0.3);
+            padding: 8px 16px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-default);
             border-radius: 100px;
             font-size: 13px;
             font-weight: 600;
-            color: #a78bfa;
-            margin-bottom: 24px;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            letter-spacing: 0.02em;
+        }
+
+        .header-badge svg {
+            color: var(--text-primary);
         }
 
         .main-title {
-            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-size: clamp(2rem, 5vw, 3rem);
             font-weight: 800;
-            background: linear-gradient(135deg, #fff 0%, #94a3b8 50%, #64748b 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 16px;
-            letter-spacing: -0.03em;
-            line-height: 1.1;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+            letter-spacing: -0.025em;
+            line-height: 1.2;
         }
 
         .subtitle {
-            font-size: 1.25rem;
+            font-size: 1.125rem;
             color: var(--text-secondary);
-            margin-bottom: 28px;
+            margin-bottom: 24px;
             font-weight: 400;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
         }
 
-        .meta-info {
+        .meta-row {
             display: flex;
             justify-content: center;
-            gap: 32px;
+            gap: 12px;
             flex-wrap: wrap;
         }
 
-        .meta-item {
-            font-size: 14px;
-            color: var(--text-muted);
-            display: flex;
+        .meta-chip {
+            display: inline-flex;
             align-items: center;
-            gap: 8px;
-            padding: 8px 16px;
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 100px;
-            border: 1px solid var(--border-color);
+            gap: 6px;
+            padding: 6px 12px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-default);
+            border-radius: var(--radius-md);
+            font-size: 13px;
+            color: var(--text-tertiary);
+        }
+
+        .meta-chip svg {
+            opacity: 0.7;
         }
 
         /* Cards Grid */
         .cards-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-            margin-bottom: 64px;
+            gap: 16px;
+            padding-bottom: 64px;
         }
 
-        @media (max-width: 968px) {
+        @media (max-width: 768px) {
             .cards-grid {
                 grid-template-columns: 1fr;
             }
         }
 
-        /* Knowledge Card */
-        .knowledge-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 20px;
-            padding: 24px;
+        /* Repository Card */
+        .repo-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-default);
+            border-radius: var(--radius-lg);
+            padding: 20px;
             position: relative;
-            overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            backdrop-filter: blur(20px);
+            transition: all 0.2s ease;
             display: flex;
             flex-direction: column;
-            gap: 16px;
-        }
-
-        .knowledge-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
-        }
-
-        .knowledge-card::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 60%);
-            opacity: 0;
-            transition: opacity 0.4s;
-            pointer-events: none;
-        }
-
-        .knowledge-card:hover {
-            transform: translateY(-4px) scale(1.01);
-            background: var(--bg-card-hover);
-            border-color: var(--border-hover);
-            box-shadow:
-                0 20px 40px rgba(0, 0, 0, 0.4),
-                0 0 0 1px rgba(255, 255, 255, 0.05),
-                0 0 60px rgba(139, 92, 246, 0.1);
-        }
-
-        .knowledge-card:hover::after {
-            opacity: 1;
-        }
-
-        /* Rank styles with glow */
-        .knowledge-card.rank-1 {
-            border-color: rgba(251, 191, 36, 0.3);
-            box-shadow: 0 0 40px rgba(251, 191, 36, 0.1);
-        }
-
-        .knowledge-card.rank-2 {
-            border-color: rgba(226, 232, 240, 0.2);
-            box-shadow: 0 0 40px rgba(226, 232, 240, 0.08);
-        }
-
-        .knowledge-card.rank-3 {
-            border-color: rgba(249, 115, 22, 0.25);
-            box-shadow: 0 0 40px rgba(249, 115, 22, 0.08);
-        }
-
-        /* Card Header */
-        .card-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 16px;
-        }
-
-        .rank-section {
-            display: flex;
-            align-items: center;
             gap: 12px;
         }
 
+        .repo-card:hover {
+            border-color: var(--border-emphasis, var(--accent-fg));
+            background: var(--bg-tertiary);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Rank variants */
+        .repo-card.rank-1 {
+            border-color: rgba(227, 179, 65, 0.4);
+        }
+
+        .repo-card.rank-1:hover {
+            border-color: var(--gold);
+            box-shadow: 0 8px 24px rgba(227, 179, 65, 0.15);
+        }
+
+        .repo-card.rank-2 {
+            border-color: rgba(165, 180, 252, 0.3);
+        }
+
+        .repo-card.rank-2:hover {
+            border-color: var(--silver);
+            box-shadow: 0 8px 24px rgba(165, 180, 252, 0.1);
+        }
+
+        .repo-card.rank-3 {
+            border-color: rgba(249, 115, 22, 0.3);
+        }
+
+        .repo-card.rank-3:hover {
+            border-color: var(--bronze);
+            box-shadow: 0 8px 24px rgba(249, 115, 22, 0.12);
+        }
+
+        /* Card Header Row */
+        .card-header-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        /* Rank Badge */
         .rank-badge {
-            width: 40px;
-            height: 40px;
-            border-radius: 12px;
+            width: 32px;
+            height: 32px;
+            border-radius: var(--radius-sm);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: 800;
-            font-size: 16px;
+            font-weight: 700;
+            font-size: 13px;
+            font-family: var(--font-mono);
             flex-shrink: 0;
         }
 
         .rank-badge.gold {
-            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            background: linear-gradient(135deg, #e3b341, #b8860b);
             color: #000;
-            box-shadow: 0 4px 20px rgba(251, 191, 36, 0.4);
+            box-shadow: 0 2px 8px rgba(227, 179, 65, 0.4);
         }
 
         .rank-badge.silver {
-            background: linear-gradient(135deg, #e2e8f0, #94a3b8);
-            color: #1e293b;
-            box-shadow: 0 4px 20px rgba(226, 232, 240, 0.3);
+            background: linear-gradient(135deg, #a5b4fc, #818cf8);
+            color: #000;
+            box-shadow: 0 2px 8px rgba(165, 180, 252, 0.3);
         }
 
         .rank-badge.bronze {
             background: linear-gradient(135deg, #f97316, #ea580c);
             color: #fff;
-            box-shadow: 0 4px 20px rgba(249, 115, 22, 0.3);
+            box-shadow: 0 2px 8px rgba(249, 115, 22, 0.3);
         }
 
         .rank-badge.default {
-            background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
-            color: var(--text-secondary);
-            border: 1px solid var(--border-color);
+            background: var(--bg-tertiary);
+            color: var(--text-tertiary);
+            border: 1px solid var(--border-default);
         }
 
-        .star-section {
+        /* Stars */
+        .stars-container {
             display: flex;
             align-items: center;
             gap: 8px;
         }
 
-        .star-count {
-            font-weight: 700;
-            font-size: 14px;
-            color: var(--accent-gold);
-            display: flex;
+        .star-btn {
+            display: inline-flex;
             align-items: center;
             gap: 4px;
-            padding: 6px 12px;
-            background: rgba(251, 191, 36, 0.1);
-            border-radius: 100px;
-            border: 1px solid rgba(251, 191, 36, 0.2);
+            padding: 4px 10px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-default);
+            border-radius: var(--radius-md);
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--gold);
+            font-family: var(--font-mono);
+            cursor: default;
+        }
+
+        .star-btn svg {
+            width: 14px;
+            height: 14px;
         }
 
         .star-growth {
             font-size: 12px;
             font-weight: 600;
-            color: var(--accent-green);
-            background: rgba(34, 197, 94, 0.15);
-            padding: 4px 10px;
-            border-radius: 100px;
-            border: 1px solid rgba(34, 197, 94, 0.25);
+            color: var(--success-fg);
+            font-family: var(--font-mono);
         }
 
         /* Repo Name */
         .repo-name {
-            font-size: 20px;
-            font-weight: 700;
-            line-height: 1.3;
+            font-size: 1rem;
+            font-weight: 600;
+            line-height: 1.4;
         }
 
         .repo-name a {
-            color: var(--text-primary);
+            color: var(--accent-fg);
             text-decoration: none;
-            transition: all 0.2s;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            flex-wrap: wrap;
+            transition: color 0.15s ease;
         }
 
         .repo-name a:hover {
-            color: var(--accent-blue);
-        }
-
-        .repo-owner {
-            color: var(--text-muted);
-            font-weight: 500;
-        }
-
-        .repo-slash {
-            color: var(--text-muted);
-            opacity: 0.5;
-        }
-
-        .repo-repo {
             color: var(--text-primary);
-            font-weight: 700;
+            text-decoration: underline;
         }
 
-        .repo-name a:hover .repo-repo {
-            color: var(--accent-blue);
+        .repo-name .owner {
+            color: var(--text-secondary);
+        }
+
+        .repo-name .slash {
+            color: var(--text-tertiary);
+            margin: 0 2px;
         }
 
         /* Description */
-        .repo-description {
-            font-size: 14px;
+        .repo-desc {
+            font-size: 13px;
             color: var(--text-secondary);
-            line-height: 1.7;
+            line-height: 1.5;
             display: -webkit-box;
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
@@ -418,29 +414,27 @@ class HTMLReportGenerator:
             display: flex;
             align-items: center;
             justify-content: space-between;
-            flex-wrap: wrap;
             gap: 12px;
-            padding-top: 16px;
-            border-top: 1px solid var(--border-color);
+            padding-top: 12px;
+            border-top: 1px solid var(--border-muted);
+            flex-wrap: wrap;
         }
 
-        .language-tag {
+        .language-info {
             display: flex;
             align-items: center;
-            gap: 8px;
-            font-size: 13px;
+            gap: 6px;
+            font-size: 12px;
             color: var(--text-secondary);
-            font-weight: 500;
         }
 
         .language-dot {
             width: 10px;
             height: 10px;
             border-radius: 50%;
-            box-shadow: 0 0 8px currentColor;
         }
 
-        .topics {
+        .topics-list {
             display: flex;
             gap: 6px;
             flex-wrap: wrap;
@@ -448,91 +442,304 @@ class HTMLReportGenerator:
 
         .topic-tag {
             font-size: 11px;
-            padding: 5px 12px;
-            background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(139, 92, 246, 0.15));
-            color: #a78bfa;
+            padding: 2px 8px;
+            background: var(--bg-tertiary);
+            color: var(--accent-fg);
             border-radius: 100px;
-            font-weight: 600;
-            border: 1px solid rgba(139, 92, 246, 0.25);
-            transition: all 0.2s;
+            font-weight: 500;
+            border: 1px solid transparent;
+            transition: all 0.15s ease;
         }
 
         .topic-tag:hover {
-            background: linear-gradient(135deg, rgba(59, 130, 246, 0.25), rgba(139, 92, 246, 0.25));
-            transform: translateY(-1px);
+            border-color: var(--accent-fg);
+            background: rgba(88, 166, 255, 0.1);
         }
 
         /* Footer */
         .report-footer {
             text-align: center;
-            padding: 48px;
-            color: var(--text-muted);
-            font-size: 14px;
-            border-top: 1px solid var(--border-color);
-            margin-top: 64px;
+            padding: 32px;
+            color: var(--text-tertiary);
+            font-size: 13px;
+            border-top: 1px solid var(--border-muted);
         }
         """
 
     def _generate_github_cards(self, items: List[Dict]) -> str:
-        """Generate HTML for GitHub repository knowledge cards."""
+        """Generate HTML for GitHub repository cards."""
         cards = []
         for i, item in enumerate(items, 1):
-            rank_class = ""
-            badge_class = "default"
-            if i == 1:
-                rank_class = "rank-1"
-                badge_class = "gold"
-            elif i == 2:
-                rank_class = "rank-2"
-                badge_class = "silver"
-            elif i == 3:
-                rank_class = "rank-3"
-                badge_class = "bronze"
+            rank_class = f"rank-{i}" if i <= 3 else ""
+            badge_class = ["gold", "silver", "bronze"][i - 1] if i <= 3 else "default"
 
             owner = html.escape(item.get('owner', 'Unknown'))
             repo = html.escape(item.get('repo', 'Unknown'))
             url = html.escape(item.get('url', '#'))
-            description = html.escape(item.get('description', 'No description'))
+            description = html.escape(item.get('description', 'No description available'))
             stars = item.get('stars_formatted', str(item.get('stars', 'N/A')))
             stars_growth = item.get('stars_growth', '')
             language = html.escape(item.get('language', 'Unknown'))
             language_color = item.get('language_color', '#8b949e')
             topics = item.get('topics', [])[:3]
 
-            growth_html = f'<span class="star-growth">+{stars_growth}</span>' if stars_growth else ''
-            topics_html = ''.join([f'<span class="topic-tag">{html.escape(t)}</span>' for t in topics]) if topics else ''
+            growth_html = f'<span class="star-growth">+{stars_growth}/day</span>' if stars_growth else ''
+            topics_html = ''.join([f'<span class="topic-tag">{html.escape(t)}</span>' for t in topics])
 
             card = f"""
-            <article class="knowledge-card {rank_class}">
-                <div class="card-header">
-                    <div class="rank-section">
-                        <div class="rank-badge {badge_class}">#{i}</div>
-                    </div>
-                    <div class="star-section">
-                        <span class="star-count">⭐ {stars}</span>
+            <article class="repo-card {rank_class}">
+                <div class="card-header-row">
+                    <div class="rank-badge {badge_class}">#{i}</div>
+                    <div class="stars-container">
+                        <span class="star-btn">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                            </svg>
+                            {stars}
+                        </span>
                         {growth_html}
                     </div>
                 </div>
                 <h3 class="repo-name">
                     <a href="{url}" target="_blank" rel="noopener">
-                        <span class="repo-owner">{owner}</span>
-                        <span class="repo-slash">/</span>
-                        <span class="repo-repo">{repo}</span>
+                        <span class="owner">{owner}</span><span class="slash">/</span>{repo}
                     </a>
                 </h3>
-                <p class="repo-description">{description}</p>
+                <p class="repo-desc">{description}</p>
                 <div class="card-footer">
-                    <div class="language-tag">
-                        <span class="language-dot" style="background-color: {language_color}; box-shadow: 0 0 8px {language_color}"></span>
+                    <div class="language-info">
+                        <span class="language-dot" style="background-color: {language_color}"></span>
                         <span>{language}</span>
                     </div>
-                    <div class="topics">{topics_html}</div>
+                    <div class="topics-list">{topics_html}</div>
                 </div>
             </article>
             """
             cards.append(card)
 
         return '\n'.join(cards)
+
+    def generate(self, items: List[Dict], theme: str = "default") -> str:
+        """Generate HTML report from items."""
+        css = self._get_css(theme)
+
+        html_content = f"""<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="dark">
+    <title>{html.escape(self.title)}</title>
+    <style>{css}</style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📰 {html.escape(self.title)}</h1>
+            <p class="meta">Generated at {datetime.now().strftime('%Y-%m-%d %H:%M')}</p>
+        </header>
+        <main>
+            {self._generate_items_html(items)}
+        </main>
+        <footer>
+            <p>Generated by RSS Manager</p>
+        </footer>
+    </div>
+</body>
+</html>"""
+        return html_content
+
+    def _get_css(self, theme: str) -> str:
+        """Get CSS styles for the report."""
+        return """
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            html {
+                color-scheme: dark;
+            }
+
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+                background: #0d1117;
+                color: #e6edf3;
+                min-height: 100vh;
+                padding: 20px;
+            }
+
+            .container {
+                max-width: 1200px;
+                margin: 0 auto;
+            }
+
+            header {
+                text-align: center;
+                padding: 40px 0;
+            }
+
+            header h1 {
+                font-size: 2.5em;
+                margin-bottom: 10px;
+                color: #e6edf3;
+            }
+
+            .meta {
+                font-size: 1.1em;
+                color: #8b949e;
+            }
+
+            main {
+                background: #161b22;
+                border-radius: 12px;
+                padding: 40px;
+                border: 1px solid #30363d;
+            }
+
+            .category {
+                margin-bottom: 40px;
+            }
+
+            .category-title {
+                font-size: 1.5em;
+                color: #e6edf3;
+                border-bottom: 2px solid #238636;
+                padding-bottom: 10px;
+                margin-bottom: 20px;
+            }
+
+            .item {
+                background: #21262d;
+                border-radius: 8px;
+                padding: 20px;
+                margin-bottom: 15px;
+                border: 1px solid #30363d;
+                transition: all 0.2s ease;
+            }
+
+            .item:hover {
+                border-color: #58a6ff;
+            }
+
+            .item-header {
+                display: flex;
+                align-items: center;
+                margin-bottom: 10px;
+            }
+
+            .item-number {
+                background: #238636;
+                color: white;
+                width: 28px;
+                height: 28px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-weight: bold;
+                margin-right: 12px;
+            }
+
+            .item-title {
+                font-size: 1.2em;
+                color: #58a6ff;
+                text-decoration: none;
+                font-weight: 600;
+                flex: 1;
+            }
+
+            .item-title:hover {
+                color: #e6edf3;
+                text-decoration: underline;
+            }
+
+            .item-source {
+                background: #30363d;
+                color: #8b949e;
+                padding: 4px 12px;
+                border-radius: 20px;
+                font-size: 0.85em;
+            }
+
+            .item-meta {
+                color: #6e7681;
+                font-size: 0.9em;
+                margin-top: 8px;
+            }
+
+            .item-summary {
+                color: #8b949e;
+                line-height: 1.6;
+                margin-top: 10px;
+                padding-left: 40px;
+            }
+
+            footer {
+                text-align: center;
+                padding: 30px;
+                color: #6e7681;
+            }
+
+            @media (max-width: 768px) {
+                header h1 {
+                    font-size: 1.8em;
+                }
+
+                main {
+                    padding: 20px;
+                }
+            }
+        """
+
+    def _generate_items_html(self, items: List[Dict]) -> str:
+        """Generate HTML for items grouped by category."""
+        if not items:
+            return '<p class="no-items">No items found.</p>'
+
+        categories = {}
+        for item in items:
+            cat = item.get('category', 'Uncategorized')
+            if cat not in categories:
+                categories[cat] = []
+            categories[cat].append(item)
+
+        html_parts = []
+        for category, cat_items in categories.items():
+            html_parts.append(self._generate_category_html(category, cat_items))
+
+        return '\n'.join(html_parts)
+
+    def _generate_category_html(self, category: str, items: List[Dict]) -> str:
+        """Generate HTML for a category."""
+        items_html = []
+        for i, item in enumerate(items, 1):
+            title = html.escape(item.get('title', 'No title'))
+            url = html.escape(item.get('url', ''))
+            source = html.escape(item.get('source', 'Unknown'))
+            summary = html.escape(item.get('summary', ''))
+            date = html.escape(item.get('published', ''))
+
+            summary_html = f'<p class="item-summary">{summary}</p>' if summary else ''
+
+            item_html = f"""
+            <div class="item">
+                <div class="item-header">
+                    <span class="item-number">{i}</span>
+                    <a href="{url}" target="_blank" class="item-title">{title}</a>
+                    <span class="item-source">{source}</span>
+                </div>
+                <div class="item-meta">📅 {date}</div>
+                {summary_html}
+            </div>"""
+            items_html.append(item_html)
+
+        return f"""
+        <section class="category">
+            <h2 class="category-title">{html.escape(category)}</h2>
+            {''.join(items_html)}
+        </section>"""
 
     def save(self, content: str, filepath: str):
         """Save HTML report to file."""
