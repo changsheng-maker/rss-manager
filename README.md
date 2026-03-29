@@ -4,6 +4,8 @@
 [![Python](https://img.shields.io/badge/Python-3.9+-green.svg)](https://www.python.org/)
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
+**English** | [中文](README_CN.md)
+
 > Discover, manage, and organize RSS feeds with Claude Code. Auto-detect feeds, RSSHub integration, OPML import/export, and AI-powered content reports.
 
 ## ✨ Features
