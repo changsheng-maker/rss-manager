@@ -116,26 +116,27 @@ class HTMLReportGenerator:
 </html>"""
 
     def _get_css(self) -> str:
-        """Premium dashboard CSS."""
+        """Premium light theme CSS."""
         return """
         :root {
-            --bg: #09090b;
-            --surface: #0f0f0f;
-            --border: #1a1a1a;
-            --border-hover: #2a2a2a;
-            --text: #fafafa;
-            --text-2: #a1a1aa;
-            --text-3: #52525b;
-            --accent: #06b6d4;
-            --accent-dim: rgba(6, 182, 212, 0.1);
-            --gold: #fbbf24;
-            --gold-dim: rgba(251, 191, 36, 0.15);
-            --silver: #a1a1aa;
-            --silver-dim: rgba(161, 161, 170, 0.15);
-            --bronze: #f97316;
-            --bronze-dim: rgba(249, 115, 22, 0.15);
-            --green: #22c55e;
-            --radius: 8px;
+            --bg: #ffffff;
+            --surface: #fafafa;
+            --surface-hover: #f4f4f5;
+            --border: #e4e4e7;
+            --border-hover: #d4d4d8;
+            --text: #18181b;
+            --text-2: #52525b;
+            --text-3: #a1a1aa;
+            --accent: #0ea5e9;
+            --accent-dim: rgba(14, 165, 233, 0.1);
+            --gold: #d97706;
+            --gold-dim: rgba(217, 119, 6, 0.1);
+            --silver: #737373;
+            --silver-dim: rgba(115, 115, 115, 0.1);
+            --bronze: #ea580c;
+            --bronze-dim: rgba(234, 88, 12, 0.1);
+            --green: #16a34a;
+            --radius: 10px;
         }
 
         *, *::before, *::after {
@@ -145,7 +146,7 @@ class HTMLReportGenerator:
         }
 
         html {
-            color-scheme: dark;
+            color-scheme: light;
             font-size: 16px;
         }
 
@@ -204,7 +205,7 @@ class HTMLReportGenerator:
             background: transparent;
             border: 1px solid var(--border);
             border-radius: 6px;
-            color: var(--text-3);
+            color: var(--text-2);
             font-size: 12px;
             font-weight: 500;
             font-family: 'JetBrains Mono', monospace;
@@ -248,7 +249,7 @@ class HTMLReportGenerator:
         .list {
             display: flex;
             flex-direction: column;
-            gap: 2px;
+            gap: 3px;
         }
 
         /* Card */
@@ -267,7 +268,7 @@ class HTMLReportGenerator:
 
         .card:hover {
             border-color: var(--border-hover);
-            background: #111;
+            background: var(--surface-hover);
         }
 
         .card:hover .card-link {
@@ -285,7 +286,7 @@ class HTMLReportGenerator:
             display: flex;
             align-items: center;
             justify-content: center;
-            background: var(--surface);
+            background: var(--bg);
             border: 1px solid var(--border);
             border-radius: 6px;
         }
@@ -293,19 +294,19 @@ class HTMLReportGenerator:
         .card.rank-1 .rank {
             color: var(--gold);
             background: var(--gold-dim);
-            border-color: rgba(251, 191, 36, 0.3);
+            border-color: rgba(217, 119, 6, 0.2);
         }
 
         .card.rank-2 .rank {
             color: var(--silver);
             background: var(--silver-dim);
-            border-color: rgba(161, 161, 170, 0.3);
+            border-color: rgba(115, 115, 115, 0.2);
         }
 
         .card.rank-3 .rank {
             color: var(--bronze);
             background: var(--bronze-dim);
-            border-color: rgba(249, 115, 22, 0.3);
+            border-color: rgba(234, 88, 12, 0.2);
         }
 
         /* Info */
