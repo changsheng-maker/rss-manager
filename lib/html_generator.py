@@ -36,10 +36,8 @@ class HTMLReportGenerator:
     <style>{css}</style>
 </head>
 <body>
-    <div class="page-background">
-        <div class="gradient-orb orb-1"></div>
-        <div class="gradient-orb orb-2"></div>
-    </div>
+    <div class="page-background"></div>
+    <div class="noise-overlay"></div>
     <div class="container">
         <header class="report-header">
             <div class="header-badge">🔥 GitHub Trending</div>
@@ -62,29 +60,28 @@ class HTMLReportGenerator:
         return html_content
 
     def _get_github_css(self) -> str:
-        """Get stunning dark theme CSS with glassmorphism effects."""
+        """Get stunning dark theme CSS with knowledge card design."""
         return """
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
         :root {
-            --bg-primary: #0a0c10;
-            --bg-secondary: #111318;
-            --bg-card: rgba(23, 25, 31, 0.8);
-            --bg-card-hover: rgba(30, 33, 41, 0.95);
+            --bg-primary: #0f0f1a;
+            --bg-secondary: #16162a;
+            --bg-card: rgba(30, 30, 56, 0.6);
+            --bg-card-hover: rgba(40, 40, 72, 0.8);
             --border-color: rgba(255, 255, 255, 0.08);
             --border-hover: rgba(255, 255, 255, 0.15);
-            --text-primary: #f0f2f5;
-            --text-secondary: #9ca3af;
-            --text-muted: #6b7280;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
             --accent-gold: #fbbf24;
-            --accent-silver: #e5e7eb;
+            --accent-silver: #e2e8f0;
             --accent-bronze: #f97316;
             --accent-blue: #3b82f6;
             --accent-green: #22c55e;
-            --accent-purple: #a855f7;
+            --accent-purple: #8b5cf6;
             --accent-pink: #ec4899;
-            --star-color: #fbbf24;
-            --glow-gold: rgba(251, 191, 36, 0.3);
-            --glow-blue: rgba(59, 130, 246, 0.3);
-            --glow-purple: rgba(168, 85, 247, 0.3);
+            --accent-cyan: #06b6d4;
         }
 
         * {
@@ -94,16 +91,15 @@ class HTMLReportGenerator:
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'SF Pro Display', Roboto, 'Helvetica Neue', sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             background: var(--bg-primary);
             color: var(--text-primary);
             min-height: 100vh;
             line-height: 1.6;
             position: relative;
-            overflow-x: hidden;
         }
 
-        /* Animated background orbs */
+        /* Animated mesh gradient background */
         .page-background {
             position: fixed;
             top: 0;
@@ -113,90 +109,82 @@ class HTMLReportGenerator:
             pointer-events: none;
             z-index: 0;
             overflow: hidden;
+            background:
+                radial-gradient(ellipse at 20% 20%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(236, 72, 153, 0.08) 0%, transparent 60%);
         }
 
-        .gradient-orb {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.4;
-            animation: float 20s ease-in-out infinite;
-        }
-
-        .orb-1 {
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(59, 130, 246, 0.4) 0%, transparent 70%);
-            top: -200px;
-            right: -200px;
-        }
-
-        .orb-2 {
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(168, 85, 247, 0.3) 0%, transparent 70%);
-            bottom: -150px;
-            left: -150px;
-            animation-delay: -10s;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            25% { transform: translate(50px, -50px) scale(1.1); }
-            50% { transform: translate(-30px, 30px) scale(0.95); }
-            75% { transform: translate(30px, 50px) scale(1.05); }
+        .noise-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
         }
 
         .container {
             max-width: 1400px;
             margin: 0 auto;
-            padding: 40px 20px;
+            padding: 48px 24px;
             position: relative;
-            z-index: 1;
+            z-index: 2;
         }
 
         /* Header Styles */
         .report-header {
             text-align: center;
-            padding: 60px 20px;
-            margin-bottom: 40px;
+            padding: 64px 20px;
+            margin-bottom: 48px;
+            position: relative;
         }
 
         .header-badge {
-            display: inline-block;
-            padding: 8px 20px;
-            background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(168, 85, 247, 0.2));
-            border: 1px solid rgba(59, 130, 246, 0.3);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 24px;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(59, 130, 246, 0.2));
+            border: 1px solid rgba(139, 92, 246, 0.3);
             border-radius: 100px;
-            font-size: 14px;
-            font-weight: 500;
-            color: var(--accent-blue);
+            font-size: 13px;
+            font-weight: 600;
+            color: #a78bfa;
             margin-bottom: 24px;
             letter-spacing: 0.5px;
+            text-transform: uppercase;
         }
 
         .main-title {
-            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-size: clamp(2.5rem, 5vw, 4rem);
             font-weight: 800;
-            background: linear-gradient(135deg, #fff 0%, #9ca3af 100%);
+            background: linear-gradient(135deg, #fff 0%, #94a3b8 50%, #64748b 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             margin-bottom: 16px;
-            letter-spacing: -0.02em;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
         }
 
         .subtitle {
             font-size: 1.25rem;
             color: var(--text-secondary);
-            margin-bottom: 24px;
+            margin-bottom: 28px;
             font-weight: 400;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .meta-info {
             display: flex;
             justify-content: center;
-            gap: 24px;
+            gap: 32px;
             flex-wrap: wrap;
         }
 
@@ -205,109 +193,143 @@ class HTMLReportGenerator:
             color: var(--text-muted);
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 8px;
+            padding: 8px 16px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 100px;
+            border: 1px solid var(--border-color);
         }
 
-        /* Grid Layout */
+        /* Cards Grid */
         .cards-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
-            gap: 24px;
-            margin-bottom: 60px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-bottom: 64px;
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 968px) {
             .cards-grid {
                 grid-template-columns: 1fr;
             }
         }
 
-        /* Card Styles */
-        .repo-card {
+        /* Knowledge Card */
+        .knowledge-card {
             background: var(--bg-card);
             border: 1px solid var(--border-color);
-            border-radius: 16px;
+            border-radius: 20px;
             padding: 24px;
             position: relative;
             overflow: hidden;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            backdrop-filter: blur(10px);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(20px);
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
         }
 
-        .repo-card::before {
+        .knowledge-card::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
         }
 
-        .repo-card:hover {
-            transform: translateY(-4px);
+        .knowledge-card::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 60%);
+            opacity: 0;
+            transition: opacity 0.4s;
+            pointer-events: none;
+        }
+
+        .knowledge-card:hover {
+            transform: translateY(-4px) scale(1.01);
             background: var(--bg-card-hover);
             border-color: var(--border-hover);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.05);
+            box-shadow:
+                0 20px 40px rgba(0, 0, 0, 0.4),
+                0 0 0 1px rgba(255, 255, 255, 0.05),
+                0 0 60px rgba(139, 92, 246, 0.1);
         }
 
-        .repo-card.rank-1 {
+        .knowledge-card:hover::after {
+            opacity: 1;
+        }
+
+        /* Rank styles with glow */
+        .knowledge-card.rank-1 {
             border-color: rgba(251, 191, 36, 0.3);
-            box-shadow: 0 0 30px rgba(251, 191, 36, 0.1);
+            box-shadow: 0 0 40px rgba(251, 191, 36, 0.1);
         }
 
-        .repo-card.rank-2 {
-            border-color: rgba(229, 231, 235, 0.2);
-            box-shadow: 0 0 30px rgba(229, 231, 235, 0.08);
+        .knowledge-card.rank-2 {
+            border-color: rgba(226, 232, 240, 0.2);
+            box-shadow: 0 0 40px rgba(226, 232, 240, 0.08);
         }
 
-        .repo-card.rank-3 {
+        .knowledge-card.rank-3 {
             border-color: rgba(249, 115, 22, 0.25);
-            box-shadow: 0 0 30px rgba(249, 115, 22, 0.08);
+            box-shadow: 0 0 40px rgba(249, 115, 22, 0.08);
         }
 
         /* Card Header */
         .card-header {
             display: flex;
-            align-items: flex-start;
+            align-items: center;
             justify-content: space-between;
-            margin-bottom: 16px;
+            gap: 16px;
+        }
+
+        .rank-section {
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
 
         .rank-badge {
-            width: 36px;
-            height: 36px;
-            border-radius: 10px;
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: 700;
-            font-size: 14px;
+            font-weight: 800;
+            font-size: 16px;
             flex-shrink: 0;
         }
 
         .rank-badge.gold {
             background: linear-gradient(135deg, #fbbf24, #f59e0b);
             color: #000;
-            box-shadow: 0 4px 15px rgba(251, 191, 36, 0.4);
+            box-shadow: 0 4px 20px rgba(251, 191, 36, 0.4);
         }
 
         .rank-badge.silver {
-            background: linear-gradient(135deg, #e5e7eb, #9ca3af);
-            color: #000;
-            box-shadow: 0 4px 15px rgba(229, 231, 235, 0.3);
+            background: linear-gradient(135deg, #e2e8f0, #94a3b8);
+            color: #1e293b;
+            box-shadow: 0 4px 20px rgba(226, 232, 240, 0.3);
         }
 
         .rank-badge.bronze {
             background: linear-gradient(135deg, #f97316, #ea580c);
             color: #fff;
-            box-shadow: 0 4px 15px rgba(249, 115, 22, 0.3);
+            box-shadow: 0 4px 20px rgba(249, 115, 22, 0.3);
         }
 
         .rank-badge.default {
-            background: rgba(255, 255, 255, 0.1);
+            background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
             color: var(--text-secondary);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--border-color);
         }
 
         .star-section {
@@ -318,15 +340,15 @@ class HTMLReportGenerator:
 
         .star-count {
             font-weight: 700;
-            font-size: 15px;
-            color: var(--star-color);
+            font-size: 14px;
+            color: var(--accent-gold);
             display: flex;
             align-items: center;
             gap: 4px;
-        }
-
-        .star-icon {
-            font-size: 14px;
+            padding: 6px 12px;
+            background: rgba(251, 191, 36, 0.1);
+            border-radius: 100px;
+            border: 1px solid rgba(251, 191, 36, 0.2);
         }
 
         .star-growth {
@@ -334,25 +356,26 @@ class HTMLReportGenerator:
             font-weight: 600;
             color: var(--accent-green);
             background: rgba(34, 197, 94, 0.15);
-            padding: 2px 8px;
+            padding: 4px 10px;
             border-radius: 100px;
+            border: 1px solid rgba(34, 197, 94, 0.25);
         }
 
         /* Repo Name */
         .repo-name {
-            font-size: 18px;
-            font-weight: 600;
-            margin-bottom: 12px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            flex-wrap: wrap;
+            font-size: 20px;
+            font-weight: 700;
+            line-height: 1.3;
         }
 
         .repo-name a {
             color: var(--text-primary);
             text-decoration: none;
-            transition: color 0.2s;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-wrap: wrap;
         }
 
         .repo-name a:hover {
@@ -370,20 +393,24 @@ class HTMLReportGenerator:
         }
 
         .repo-repo {
+            color: var(--text-primary);
+            font-weight: 700;
+        }
+
+        .repo-name a:hover .repo-repo {
             color: var(--accent-blue);
-            font-weight: 600;
         }
 
         /* Description */
         .repo-description {
             font-size: 14px;
             color: var(--text-secondary);
-            line-height: 1.6;
-            margin-bottom: 16px;
+            line-height: 1.7;
             display: -webkit-box;
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
             overflow: hidden;
+            flex-grow: 1;
         }
 
         /* Card Footer */
@@ -393,20 +420,24 @@ class HTMLReportGenerator:
             justify-content: space-between;
             flex-wrap: wrap;
             gap: 12px;
+            padding-top: 16px;
+            border-top: 1px solid var(--border-color);
         }
 
         .language-tag {
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 8px;
             font-size: 13px;
             color: var(--text-secondary);
+            font-weight: 500;
         }
 
         .language-dot {
             width: 10px;
             height: 10px;
             border-radius: 50%;
+            box-shadow: 0 0 8px currentColor;
         }
 
         .topics {
@@ -417,27 +448,33 @@ class HTMLReportGenerator:
 
         .topic-tag {
             font-size: 11px;
-            padding: 4px 10px;
-            background: rgba(59, 130, 246, 0.15);
-            color: var(--accent-blue);
+            padding: 5px 12px;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(139, 92, 246, 0.15));
+            color: #a78bfa;
             border-radius: 100px;
-            font-weight: 500;
-            border: 1px solid rgba(59, 130, 246, 0.2);
+            font-weight: 600;
+            border: 1px solid rgba(139, 92, 246, 0.25);
+            transition: all 0.2s;
+        }
+
+        .topic-tag:hover {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.25), rgba(139, 92, 246, 0.25));
+            transform: translateY(-1px);
         }
 
         /* Footer */
         .report-footer {
             text-align: center;
-            padding: 40px;
+            padding: 48px;
             color: var(--text-muted);
             font-size: 14px;
             border-top: 1px solid var(--border-color);
-            margin-top: 40px;
+            margin-top: 64px;
         }
         """
 
     def _generate_github_cards(self, items: List[Dict]) -> str:
-        """Generate HTML for GitHub repository cards."""
+        """Generate HTML for GitHub repository knowledge cards."""
         cards = []
         for i, item in enumerate(items, 1):
             rank_class = ""
@@ -452,29 +489,27 @@ class HTMLReportGenerator:
                 rank_class = "rank-3"
                 badge_class = "bronze"
 
-            name = html.escape(item.get('name', 'Unknown'))
             owner = html.escape(item.get('owner', 'Unknown'))
             repo = html.escape(item.get('repo', 'Unknown'))
             url = html.escape(item.get('url', '#'))
             description = html.escape(item.get('description', 'No description'))
-            stars = item.get('stars_formatted', item.get('stars', 'N/A'))
+            stars = item.get('stars_formatted', str(item.get('stars', 'N/A')))
             stars_growth = item.get('stars_growth', '')
             language = html.escape(item.get('language', 'Unknown'))
             language_color = item.get('language_color', '#8b949e')
-            topics = item.get('topics', [])[:3]  # Limit to 3 topics
+            topics = item.get('topics', [])[:3]
 
-            # Format star growth
-            growth_html = f'<span class="star-growth">+{stars_growth} today</span>' if stars_growth else ''
-
-            # Format topics
+            growth_html = f'<span class="star-growth">+{stars_growth}</span>' if stars_growth else ''
             topics_html = ''.join([f'<span class="topic-tag">{html.escape(t)}</span>' for t in topics]) if topics else ''
 
             card = f"""
-            <article class="repo-card {rank_class}">
+            <article class="knowledge-card {rank_class}">
                 <div class="card-header">
-                    <div class="rank-badge {badge_class}">{i}</div>
+                    <div class="rank-section">
+                        <div class="rank-badge {badge_class}">#{i}</div>
+                    </div>
                     <div class="star-section">
-                        <span class="star-count"><span class="star-icon">⭐</span> {stars}</span>
+                        <span class="star-count">⭐ {stars}</span>
                         {growth_html}
                     </div>
                 </div>
@@ -488,7 +523,7 @@ class HTMLReportGenerator:
                 <p class="repo-description">{description}</p>
                 <div class="card-footer">
                     <div class="language-tag">
-                        <span class="language-dot" style="background-color: {language_color}"></span>
+                        <span class="language-dot" style="background-color: {language_color}; box-shadow: 0 0 8px {language_color}"></span>
                         <span>{language}</span>
                     </div>
                     <div class="topics">{topics_html}</div>
@@ -498,249 +533,6 @@ class HTMLReportGenerator:
             cards.append(card)
 
         return '\n'.join(cards)
-
-    def generate(self, items: List[Dict], theme: str = "default") -> str:
-        """Generate HTML report from items."""
-        css = self._get_css(theme)
-
-        html_content = f"""<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{html.escape(self.title)}</title>
-    <style>{css}</style>
-</head>
-<body>
-    <div class="container">
-        <header>
-            <h1>📰 {html.escape(self.title)}</h1>
-            <p class="meta">Generated at {datetime.now().strftime('%Y-%m-%d %H:%M')}</p>
-        </header>
-        <main>
-            {self._generate_items_html(items)}
-        </main>
-        <footer>
-            <p>Generated by RSS Manager</p>
-        </footer>
-    </div>
-</body>
-</html>"""
-        return html_content
-
-    def _get_css(self, theme: str) -> str:
-        """Get CSS styles for the report."""
-        return """
-            * {
-                margin: 0;
-                padding: 0;
-                box-sizing: border-box;
-            }
-
-            body {
-                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
-                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-                min-height: 100vh;
-                padding: 20px;
-            }
-
-            .container {
-                max-width: 1200px;
-                margin: 0 auto;
-            }
-
-            header {
-                text-align: center;
-                padding: 40px 0;
-                color: white;
-            }
-
-            header h1 {
-                font-size: 2.5em;
-                margin-bottom: 10px;
-                text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-            }
-
-            .meta {
-                font-size: 1.1em;
-                opacity: 0.9;
-            }
-
-            main {
-                background: white;
-                border-radius: 20px;
-                padding: 40px;
-                box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            }
-
-            .category {
-                margin-bottom: 40px;
-            }
-
-            .category-title {
-                font-size: 1.8em;
-                color: #333;
-                border-bottom: 3px solid #667eea;
-                padding-bottom: 10px;
-                margin-bottom: 20px;
-            }
-
-            .item {
-                background: #f8f9fa;
-                border-radius: 12px;
-                padding: 20px;
-                margin-bottom: 15px;
-                transition: all 0.3s ease;
-                border-left: 4px solid #667eea;
-            }
-
-            .item:hover {
-                transform: translateX(5px);
-                box-shadow: 0 5px 20px rgba(102, 126, 234, 0.2);
-            }
-
-            .item-header {
-                display: flex;
-                align-items: center;
-                margin-bottom: 10px;
-            }
-
-            .item-number {
-                background: #667eea;
-                color: white;
-                width: 30px;
-                height: 30px;
-                border-radius: 50%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                font-weight: bold;
-                margin-right: 15px;
-            }
-
-            .item-title {
-                font-size: 1.3em;
-                color: #333;
-                text-decoration: none;
-                font-weight: 600;
-                flex: 1;
-            }
-
-            .item-title:hover {
-                color: #667eea;
-            }
-
-            .item-source {
-                display: inline-block;
-                background: #e3f2fd;
-                color: #1976d2;
-                padding: 4px 12px;
-                border-radius: 20px;
-                font-size: 0.85em;
-                margin-left: 10px;
-            }
-
-            .item-meta {
-                color: #666;
-                font-size: 0.9em;
-                margin-top: 8px;
-            }
-
-            .item-summary {
-                color: #555;
-                line-height: 1.6;
-                margin-top: 10px;
-                padding-left: 45px;
-            }
-
-            .stats {
-                display: flex;
-                gap: 20px;
-                margin-top: 10px;
-                padding-left: 45px;
-            }
-
-            .stat {
-                display: flex;
-                align-items: center;
-                color: #888;
-                font-size: 0.85em;
-            }
-
-            .stat-icon {
-                margin-right: 5px;
-            }
-
-            footer {
-                text-align: center;
-                padding: 30px;
-                color: white;
-                opacity: 0.8;
-            }
-
-            @media (max-width: 768px) {
-                header h1 {
-                    font-size: 1.8em;
-                }
-
-                main {
-                    padding: 20px;
-                }
-
-                .item-title {
-                    font-size: 1.1em;
-                }
-            }
-        """
-
-    def _generate_items_html(self, items: List[Dict]) -> str:
-        """Generate HTML for items grouped by category."""
-        if not items:
-            return '<p class="no-items">No items found.</p>'
-
-        # Group items by category
-        categories = {}
-        for item in items:
-            cat = item.get('category', 'Uncategorized')
-            if cat not in categories:
-                categories[cat] = []
-            categories[cat].append(item)
-
-        html_parts = []
-        for category, cat_items in categories.items():
-            html_parts.append(self._generate_category_html(category, cat_items))
-
-        return '\n'.join(html_parts)
-
-    def _generate_category_html(self, category: str, items: List[Dict]) -> str:
-        """Generate HTML for a category."""
-        items_html = []
-        for i, item in enumerate(items, 1):
-            title = html.escape(item.get('title', 'No title'))
-            url = html.escape(item.get('url', ''))
-            source = html.escape(item.get('source', 'Unknown'))
-            summary = html.escape(item.get('summary', ''))
-            date = html.escape(item.get('published', ''))
-
-            summary_html = f'<p class="item-summary">{summary}</p>' if summary else ''
-
-            item_html = f"""
-            <div class="item">
-                <div class="item-header">
-                    <span class="item-number">{i}</span>
-                    <a href="{url}" target="_blank" class="item-title">{title}</a>
-                    <span class="item-source">{source}</span>
-                </div>
-                <div class="item-meta">📅 {date}</div>
-                {summary_html}
-            </div>"""
-            items_html.append(item_html)
-
-        return f"""
-        <section class="category">
-            <h2 class="category-title">{html.escape(category)}</h2>
-            {''.join(items_html)}
-        </section>"""
 
     def save(self, content: str, filepath: str):
         """Save HTML report to file."""

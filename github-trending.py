@@ -375,7 +375,11 @@ def generate_html_report(items: list, language: str, since: str) -> str:
         }
         formatted_items.append(formatted_item)
 
-    return generator.generate(formatted_items)
+    return generator.generate_github_trending_html(
+        title=f"GitHub Trending {language or 'All Languages'} - {since.capitalize()}",
+        subtitle="Discover the most interesting open source projects",
+        items=items
+    )
 
 
 def generate_json_output(items: list) -> str:
