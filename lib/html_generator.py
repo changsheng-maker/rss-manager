@@ -56,6 +56,7 @@ class HTMLReportGenerator:
             </div>
             <h1 class="title">{html.escape(title)}</h1>
             <p class="subtitle">{html.escape(subtitle)}</p>
+            <p class="desc">{"基于 GitHub Stars 增长速率排名，帮你发现今日上升最快的开源项目" if is_zh else "Ranking by GitHub stars growth rate. Discover the fastest rising open source projects."}</p>
             <div class="meta">
                 <span class="meta-item">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -229,7 +230,17 @@ class HTMLReportGenerator:
         .subtitle {
             font-size: 15px;
             color: var(--text-3);
+            margin-bottom: 12px;
+        }
+
+        .desc {
+            font-size: 13px;
+            color: var(--text-2);
+            background: var(--accent-dim);
+            padding: 10px 14px;
+            border-radius: 6px;
             margin-bottom: 20px;
+            border-left: 3px solid var(--accent);
         }
 
         .meta {
