@@ -1,4 +1,4 @@
-"""HTML report generator for RSS content - GitHub-Inspired Dark Theme."""
+"""HTML report generator - Premium Knowledge Card Design."""
 
 from datetime import datetime
 from typing import List, Dict
@@ -18,14 +18,11 @@ class HTMLReportGenerator:
         items: List[Dict],
         theme: str = "dark"
     ) -> str:
-        """
-        Generate a GitHub-inspired dark themed HTML report for trending repositories.
-        Uses GitHub's actual design language: dark backgrounds, green primary, blue accent.
-        """
-        css = self._get_github_css()
-        cards_html = self._generate_github_cards(items)
+        """Generate premium dark theme HTML report for GitHub trending."""
+        css = self._get_css()
+        cards_html = self._generate_cards(items)
 
-        html_content = f"""<!DOCTYPE html>
+        return f"""<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
@@ -34,125 +31,100 @@ class HTMLReportGenerator:
     <title>{html.escape(title)}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>{css}</style>
 </head>
 <body>
-    <div class="page-bg">
-        <div class="bg-gradient"></div>
+    <div class="bg">
+        <div class="bg-grid"></div>
     </div>
     <div class="container">
-        <header class="report-header">
-            <div class="header-inner">
-                <div class="header-badge">
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-                        <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+        <header class="header">
+            <div class="badge">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                    <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+                </svg>
+                Trending
+            </div>
+            <h1 class="title">{html.escape(title)}</h1>
+            <p class="subtitle">{html.escape(subtitle)}</p>
+            <div class="meta">
+                <span class="meta-item">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="4" width="18" height="18" rx="2"/>
+                        <line x1="16" y1="2" x2="16" y2="6"/>
+                        <line x1="8" y1="2" x2="8" y2="6"/>
+                        <line x1="3" y1="10" x2="21" y2="10"/>
                     </svg>
-                    Trending Repositories
-                </div>
-                <h1 class="main-title">{html.escape(title)}</h1>
-                <p class="subtitle">{html.escape(subtitle)}</p>
-                <div class="meta-row">
-                    <span class="meta-chip">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                            <line x1="16" y1="2" x2="16" y2="6"></line>
-                            <line x1="8" y1="2" x2="8" y2="6"></line>
-                            <line x1="3" y1="10" x2="21" y2="10"></line>
-                        </svg>
-                        {datetime.now().strftime('%Y年%m月%d日')}
-                    </span>
-                    <span class="meta-chip">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M12 20V10"></path>
-                            <path d="M18 20V4"></path>
-                            <path d="M6 20v-4"></path>
-                        </svg>
-                        {len(items)} projects
-                    </span>
-                </div>
+                    {datetime.now().strftime('%Y-%m-%d')}
+                </span>
+                <span class="meta-item">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/>
+                    </svg>
+                    {len(items)} repositories
+                </span>
             </div>
         </header>
         <main class="cards-grid">
             {cards_html}
         </main>
-        <footer class="report-footer">
-            <p>Generated by RSS Manager</p>
-        </footer>
     </div>
 </body>
 </html>"""
-        return html_content
 
-    def _get_github_css(self) -> str:
-        """Get GitHub-inspired dark theme CSS."""
+    def _get_css(self) -> str:
+        """Premium dark theme CSS."""
         return """
         :root {
-            /* GitHub Dark Color System */
-            --bg-primary: #0d1117;
-            --bg-secondary: #161b22;
-            --bg-tertiary: #21262d;
-            --bg-elevated: #30363d;
-            --border-default: #30363d;
-            --border-muted: #21262d;
-            --text-primary: #e6edf3;
-            --text-secondary: #8b949e;
-            --text-tertiary: #6e7681;
-            --accent-fg: #58a6ff;
-            --accent-emphasis: #1f6feb;
-            --success-fg: #3fb950;
-            --success-emphasis: #238636;
-            --warning-fg: #d29922;
-            --danger-fg: #f85149;
-            --gold: #e3b341;
-            --silver: #a5b4fc;
+            --bg: #09090b;
+            --bg-alt: #18181b;
+            --surface: #27272a;
+            --border: #3f3f46;
+            --text: #fafafa;
+            --text-2: #a1a1aa;
+            --text-3: #71717a;
+            --accent: #3b82f6;
+            --gold: #fbbf24;
+            --silver: #d4d4d8;
             --bronze: #f97316;
-            --radius-sm: 6px;
-            --radius-md: 8px;
-            --radius-lg: 12px;
-            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            --font-mono: 'JetBrains Mono', 'SF Mono', Consolas, monospace;
+            --green: #22c55e;
+            --radius: 12px;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        html {
-            color-scheme: dark;
-        }
+        html { color-scheme: dark; }
 
         body {
-            font-family: var(--font-sans);
-            background: var(--bg-primary);
-            color: var(--text-primary);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg);
+            color: var(--text);
             min-height: 100vh;
-            line-height: 1.6;
+            line-height: 1.5;
             -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
         }
 
-        /* Page Background */
-        .page-bg {
+        /* Background */
+        .bg {
             position: fixed;
             inset: 0;
             z-index: 0;
             overflow: hidden;
-            pointer-events: none;
         }
 
-        .bg-gradient {
+        .bg-grid {
             position: absolute;
             inset: 0;
-            background:
-                radial-gradient(ellipse 80% 50% at 50% -20%, rgba(31, 111, 235, 0.15) 0%, transparent 60%),
-                radial-gradient(ellipse 60% 40% at 100% 100%, rgba(63, 185, 80, 0.08) 0%, transparent 50%);
+            background-image:
+                linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+            background-size: 60px 60px;
+            mask-image: radial-gradient(ellipse 80% 80% at 50% 0%, black 40%, transparent 100%);
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1100px;
             margin: 0 auto;
             padding: 0 24px;
             position: relative;
@@ -160,72 +132,59 @@ class HTMLReportGenerator:
         }
 
         /* Header */
-        .report-header {
-            padding: 80px 0 48px;
+        .header {
+            padding: 72px 0 48px;
             text-align: center;
         }
 
-        .header-inner {
-            max-width: 640px;
-            margin: 0 auto;
-        }
-
-        .header-badge {
+        .badge {
             display: inline-flex;
             align-items: center;
             gap: 8px;
             padding: 8px 16px;
-            background: var(--bg-secondary);
-            border: 1px solid var(--border-default);
+            background: var(--bg-alt);
+            border: 1px solid var(--border);
             border-radius: 100px;
             font-size: 13px;
             font-weight: 600;
-            color: var(--text-secondary);
+            color: var(--text-2);
             margin-bottom: 20px;
             letter-spacing: 0.02em;
         }
 
-        .header-badge svg {
-            color: var(--text-primary);
-        }
+        .badge svg { color: var(--text); }
 
-        .main-title {
-            font-size: clamp(2rem, 5vw, 3rem);
+        .title {
+            font-size: clamp(2rem, 5vw, 2.75rem);
             font-weight: 800;
-            color: var(--text-primary);
+            letter-spacing: -0.03em;
+            line-height: 1.1;
             margin-bottom: 12px;
-            letter-spacing: -0.025em;
-            line-height: 1.2;
+            background: linear-gradient(180deg, #fff 0%, #a1a1aa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .subtitle {
             font-size: 1.125rem;
-            color: var(--text-secondary);
+            color: var(--text-2);
             margin-bottom: 24px;
             font-weight: 400;
         }
 
-        .meta-row {
+        .meta {
             display: flex;
             justify-content: center;
-            gap: 12px;
+            gap: 16px;
             flex-wrap: wrap;
         }
 
-        .meta-chip {
+        .meta-item {
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            padding: 6px 12px;
-            background: var(--bg-secondary);
-            border: 1px solid var(--border-default);
-            border-radius: var(--radius-md);
             font-size: 13px;
-            color: var(--text-tertiary);
-        }
-
-        .meta-chip svg {
-            opacity: 0.7;
+            color: var(--text-3);
         }
 
         /* Cards Grid */
@@ -233,270 +192,204 @@ class HTMLReportGenerator:
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 16px;
-            padding-bottom: 64px;
+            padding-bottom: 80px;
         }
 
-        @media (max-width: 768px) {
-            .cards-grid {
-                grid-template-columns: 1fr;
-            }
+        @media (max-width: 720px) {
+            .cards-grid { grid-template-columns: 1fr; }
         }
 
-        /* Repository Card */
-        .repo-card {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border-default);
-            border-radius: var(--radius-lg);
+        /* Card */
+        .card {
+            background: var(--bg-alt);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
             padding: 20px;
             position: relative;
+            overflow: hidden;
             transition: all 0.2s ease;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
         }
 
-        .repo-card:hover {
-            border-color: var(--border-emphasis, var(--accent-fg));
-            background: var(--bg-tertiary);
+        .card::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: var(--border);
+            transition: background 0.2s ease;
+        }
+
+        .card:hover {
+            border-color: var(--text-3);
             transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.5);
         }
 
-        /* Rank variants */
-        .repo-card.rank-1 {
-            border-color: rgba(227, 179, 65, 0.4);
+        .card:hover::before {
+            background: var(--accent);
         }
 
-        .repo-card.rank-1:hover {
-            border-color: var(--gold);
-            box-shadow: 0 8px 24px rgba(227, 179, 65, 0.15);
-        }
+        /* Rank colors */
+        .card.rank-1::before { background: var(--gold); }
+        .card.rank-2::before { background: var(--silver); }
+        .card.rank-3::before { background: var(--bronze); }
 
-        .repo-card.rank-2 {
-            border-color: rgba(165, 180, 252, 0.3);
-        }
+        .card.rank-1:hover::before { background: var(--gold); }
+        .card.rank-2:hover::before { background: var(--silver); }
+        .card.rank-3:hover::before { background: var(--bronze); }
 
-        .repo-card.rank-2:hover {
-            border-color: var(--silver);
-            box-shadow: 0 8px 24px rgba(165, 180, 252, 0.1);
-        }
-
-        .repo-card.rank-3 {
-            border-color: rgba(249, 115, 22, 0.3);
-        }
-
-        .repo-card.rank-3:hover {
-            border-color: var(--bronze);
-            box-shadow: 0 8px 24px rgba(249, 115, 22, 0.12);
-        }
-
-        /* Card Header Row */
-        .card-header-row {
+        /* Card Header */
+        .card-top {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 12px;
+            margin-bottom: 14px;
         }
 
-        /* Rank Badge */
-        .rank-badge {
-            width: 32px;
-            height: 32px;
-            border-radius: var(--radius-sm);
+        .rank {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-3);
+            padding: 4px 8px;
+            background: var(--surface);
+            border-radius: 4px;
+        }
+
+        .card.rank-1 .rank { color: var(--gold); }
+        .card.rank-2 .rank { color: var(--silver); }
+        .card.rank-3 .rank { color: var(--bronze); }
+
+        .stars {
             display: flex;
             align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 13px;
-            font-family: var(--font-mono);
-            flex-shrink: 0;
-        }
-
-        .rank-badge.gold {
-            background: linear-gradient(135deg, #e3b341, #b8860b);
-            color: #000;
-            box-shadow: 0 2px 8px rgba(227, 179, 65, 0.4);
-        }
-
-        .rank-badge.silver {
-            background: linear-gradient(135deg, #a5b4fc, #818cf8);
-            color: #000;
-            box-shadow: 0 2px 8px rgba(165, 180, 252, 0.3);
-        }
-
-        .rank-badge.bronze {
-            background: linear-gradient(135deg, #f97316, #ea580c);
-            color: #fff;
-            box-shadow: 0 2px 8px rgba(249, 115, 22, 0.3);
-        }
-
-        .rank-badge.default {
-            background: var(--bg-tertiary);
-            color: var(--text-tertiary);
-            border: 1px solid var(--border-default);
-        }
-
-        /* Stars */
-        .stars-container {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .star-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            padding: 4px 10px;
-            background: var(--bg-tertiary);
-            border: 1px solid var(--border-default);
-            border-radius: var(--radius-md);
+            gap: 6px;
+            font-family: 'IBM Plex Mono', monospace;
             font-size: 13px;
             font-weight: 600;
             color: var(--gold);
-            font-family: var(--font-mono);
-            cursor: default;
         }
 
-        .star-btn svg {
+        .stars svg {
             width: 14px;
             height: 14px;
         }
 
-        .star-growth {
-            font-size: 12px;
+        .growth {
+            font-size: 11px;
             font-weight: 600;
-            color: var(--success-fg);
-            font-family: var(--font-mono);
+            color: var(--green);
+            font-family: 'IBM Plex Mono', monospace;
         }
 
         /* Repo Name */
         .repo-name {
-            font-size: 1rem;
+            font-size: 1.0625rem;
             font-weight: 600;
-            line-height: 1.4;
+            margin-bottom: 8px;
+            line-height: 1.3;
         }
 
         .repo-name a {
-            color: var(--accent-fg);
+            color: var(--text);
             text-decoration: none;
-            transition: color 0.15s ease;
+            transition: color 0.15s;
         }
 
-        .repo-name a:hover {
-            color: var(--text-primary);
-            text-decoration: underline;
-        }
+        .repo-name a:hover { color: var(--accent); }
 
-        .repo-name .owner {
-            color: var(--text-secondary);
-        }
-
-        .repo-name .slash {
-            color: var(--text-tertiary);
-            margin: 0 2px;
-        }
+        .repo-name .owner { color: var(--text-2); font-weight: 500; }
+        .repo-name .slash { color: var(--text-3); margin: 0 1px; }
 
         /* Description */
-        .repo-desc {
+        .desc {
             font-size: 13px;
-            color: var(--text-secondary);
-            line-height: 1.5;
+            color: var(--text-2);
+            line-height: 1.6;
             display: -webkit-box;
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
             overflow: hidden;
-            flex-grow: 1;
+            margin-bottom: 16px;
+            min-height: 42px;
         }
 
         /* Card Footer */
-        .card-footer {
+        .card-foot {
             display: flex;
             align-items: center;
             justify-content: space-between;
             gap: 12px;
-            padding-top: 12px;
-            border-top: 1px solid var(--border-muted);
-            flex-wrap: wrap;
+            padding-top: 14px;
+            border-top: 1px solid var(--border);
         }
 
-        .language-info {
+        .lang {
             display: flex;
             align-items: center;
             gap: 6px;
             font-size: 12px;
-            color: var(--text-secondary);
+            color: var(--text-2);
         }
 
-        .language-dot {
+        .lang-dot {
             width: 10px;
             height: 10px;
             border-radius: 50%;
         }
 
-        .topics-list {
+        .tags {
             display: flex;
             gap: 6px;
             flex-wrap: wrap;
         }
 
-        .topic-tag {
+        .tag {
             font-size: 11px;
-            padding: 2px 8px;
-            background: var(--bg-tertiary);
-            color: var(--accent-fg);
-            border-radius: 100px;
             font-weight: 500;
-            border: 1px solid transparent;
-            transition: all 0.15s ease;
+            padding: 3px 8px;
+            background: var(--surface);
+            color: var(--text-2);
+            border-radius: 4px;
+            border: 1px solid var(--border);
+            transition: all 0.15s;
         }
 
-        .topic-tag:hover {
-            border-color: var(--accent-fg);
-            background: rgba(88, 166, 255, 0.1);
-        }
-
-        /* Footer */
-        .report-footer {
-            text-align: center;
-            padding: 32px;
-            color: var(--text-tertiary);
-            font-size: 13px;
-            border-top: 1px solid var(--border-muted);
+        .tag:hover {
+            border-color: var(--accent);
+            color: var(--accent);
         }
         """
 
-    def _generate_github_cards(self, items: List[Dict]) -> str:
-        """Generate HTML for GitHub repository cards."""
+    def _generate_cards(self, items: List[Dict]) -> str:
+        """Generate HTML cards."""
         cards = []
         for i, item in enumerate(items, 1):
             rank_class = f"rank-{i}" if i <= 3 else ""
-            badge_class = ["gold", "silver", "bronze"][i - 1] if i <= 3 else "default"
-
-            owner = html.escape(item.get('owner', 'Unknown'))
-            repo = html.escape(item.get('repo', 'Unknown'))
+            owner = html.escape(item.get('owner', ''))
+            repo = html.escape(item.get('repo', ''))
             url = html.escape(item.get('url', '#'))
-            description = html.escape(item.get('description', 'No description available'))
+            desc = html.escape(item.get('description', 'No description'))
             stars = item.get('stars_formatted', str(item.get('stars', 'N/A')))
-            stars_growth = item.get('stars_growth', '')
-            language = html.escape(item.get('language', 'Unknown'))
-            language_color = item.get('language_color', '#8b949e')
+            growth = item.get('stars_growth', '')
+            lang = html.escape(item.get('language', ''))
+            lang_color = item.get('language_color', '#8b949e')
             topics = item.get('topics', [])[:3]
 
-            growth_html = f'<span class="star-growth">+{stars_growth}/day</span>' if stars_growth else ''
-            topics_html = ''.join([f'<span class="topic-tag">{html.escape(t)}</span>' for t in topics])
+            growth_html = f'<span class="growth">+{growth}/day</span>' if growth else ''
+            tags_html = ''.join([f'<span class="tag">{html.escape(t)}</span>' for t in topics])
 
             card = f"""
-            <article class="repo-card {rank_class}">
-                <div class="card-header-row">
-                    <div class="rank-badge {badge_class}">#{i}</div>
-                    <div class="stars-container">
-                        <span class="star-btn">
-                            <svg viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                            </svg>
-                            {stars}
-                        </span>
+            <article class="card {rank_class}">
+                <div class="card-top">
+                    <span class="rank">#{i}</span>
+                    <div class="stars">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                        </svg>
+                        {stars}
                         {growth_html}
                     </div>
                 </div>
@@ -505,243 +398,62 @@ class HTMLReportGenerator:
                         <span class="owner">{owner}</span><span class="slash">/</span>{repo}
                     </a>
                 </h3>
-                <p class="repo-desc">{description}</p>
-                <div class="card-footer">
-                    <div class="language-info">
-                        <span class="language-dot" style="background-color: {language_color}"></span>
-                        <span>{language}</span>
+                <p class="desc">{desc}</p>
+                <div class="card-foot">
+                    <div class="lang">
+                        <span class="lang-dot" style="background:{lang_color}"></span>
+                        {lang}
                     </div>
-                    <div class="topics-list">{topics_html}</div>
+                    <div class="tags">{tags_html}</div>
                 </div>
-            </article>
-            """
+            </article>"""
             cards.append(card)
-
         return '\n'.join(cards)
 
     def generate(self, items: List[Dict], theme: str = "default") -> str:
-        """Generate HTML report from items."""
-        css = self._get_css(theme)
-
-        html_content = f"""<!DOCTYPE html>
+        """Generate RSS HTML report."""
+        css = self._get_rss_css()
+        return f"""<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="color-scheme" content="dark">
     <title>{html.escape(self.title)}</title>
     <style>{css}</style>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>📰 {html.escape(self.title)}</h1>
-            <p class="meta">Generated at {datetime.now().strftime('%Y-%m-%d %H:%M')}</p>
+            <h1>{html.escape(self.title)}</h1>
+            <p class="date">{datetime.now().strftime('%Y-%m-%d %H:%M')}</p>
         </header>
-        <main>
-            {self._generate_items_html(items)}
-        </main>
-        <footer>
-            <p>Generated by RSS Manager</p>
-        </footer>
+        <main>{self._generate_items_html(items)}</main>
     </div>
 </body>
 </html>"""
-        return html_content
 
-    def _get_css(self, theme: str) -> str:
-        """Get CSS styles for the report."""
+    def _get_rss_css(self) -> str:
         return """
-            * {
-                margin: 0;
-                padding: 0;
-                box-sizing: border-box;
-            }
-
-            html {
-                color-scheme: dark;
-            }
-
-            body {
-                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-                background: #0d1117;
-                color: #e6edf3;
-                min-height: 100vh;
-                padding: 20px;
-            }
-
-            .container {
-                max-width: 1200px;
-                margin: 0 auto;
-            }
-
-            header {
-                text-align: center;
-                padding: 40px 0;
-            }
-
-            header h1 {
-                font-size: 2.5em;
-                margin-bottom: 10px;
-                color: #e6edf3;
-            }
-
-            .meta {
-                font-size: 1.1em;
-                color: #8b949e;
-            }
-
-            main {
-                background: #161b22;
-                border-radius: 12px;
-                padding: 40px;
-                border: 1px solid #30363d;
-            }
-
-            .category {
-                margin-bottom: 40px;
-            }
-
-            .category-title {
-                font-size: 1.5em;
-                color: #e6edf3;
-                border-bottom: 2px solid #238636;
-                padding-bottom: 10px;
-                margin-bottom: 20px;
-            }
-
-            .item {
-                background: #21262d;
-                border-radius: 8px;
-                padding: 20px;
-                margin-bottom: 15px;
-                border: 1px solid #30363d;
-                transition: all 0.2s ease;
-            }
-
-            .item:hover {
-                border-color: #58a6ff;
-            }
-
-            .item-header {
-                display: flex;
-                align-items: center;
-                margin-bottom: 10px;
-            }
-
-            .item-number {
-                background: #238636;
-                color: white;
-                width: 28px;
-                height: 28px;
-                border-radius: 50%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                font-weight: bold;
-                margin-right: 12px;
-            }
-
-            .item-title {
-                font-size: 1.2em;
-                color: #58a6ff;
-                text-decoration: none;
-                font-weight: 600;
-                flex: 1;
-            }
-
-            .item-title:hover {
-                color: #e6edf3;
-                text-decoration: underline;
-            }
-
-            .item-source {
-                background: #30363d;
-                color: #8b949e;
-                padding: 4px 12px;
-                border-radius: 20px;
-                font-size: 0.85em;
-            }
-
-            .item-meta {
-                color: #6e7681;
-                font-size: 0.9em;
-                margin-top: 8px;
-            }
-
-            .item-summary {
-                color: #8b949e;
-                line-height: 1.6;
-                margin-top: 10px;
-                padding-left: 40px;
-            }
-
-            footer {
-                text-align: center;
-                padding: 30px;
-                color: #6e7681;
-            }
-
-            @media (max-width: 768px) {
-                header h1 {
-                    font-size: 1.8em;
-                }
-
-                main {
-                    padding: 20px;
-                }
-            }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, sans-serif; background: #09090b; color: #fafafa; padding: 40px 20px; }
+        .container { max-width: 800px; margin: 0 auto; }
+        header { text-align: center; margin-bottom: 40px; }
+        h1 { font-size: 2rem; margin-bottom: 8px; }
+        .date { color: #71717a; font-size: 14px; }
+        .item { background: #18181b; border: 1px solid #3f3f46; border-radius: 8px; padding: 16px; margin-bottom: 12px; }
+        .item h2 { font-size: 1rem; margin-bottom: 8px; }
+        .item h2 a { color: #3b82f6; text-decoration: none; }
+        .item h2 a:hover { text-decoration: underline; }
+        .item p { color: #a1a1aa; font-size: 14px; line-height: 1.5; }
+        .meta { font-size: 12px; color: #71717a; margin-top: 8px; }
         """
 
     def _generate_items_html(self, items: List[Dict]) -> str:
-        """Generate HTML for items grouped by category."""
-        if not items:
-            return '<p class="no-items">No items found.</p>'
-
-        categories = {}
-        for item in items:
-            cat = item.get('category', 'Uncategorized')
-            if cat not in categories:
-                categories[cat] = []
-            categories[cat].append(item)
-
-        html_parts = []
-        for category, cat_items in categories.items():
-            html_parts.append(self._generate_category_html(category, cat_items))
-
-        return '\n'.join(html_parts)
-
-    def _generate_category_html(self, category: str, items: List[Dict]) -> str:
-        """Generate HTML for a category."""
-        items_html = []
-        for i, item in enumerate(items, 1):
-            title = html.escape(item.get('title', 'No title'))
-            url = html.escape(item.get('url', ''))
-            source = html.escape(item.get('source', 'Unknown'))
-            summary = html.escape(item.get('summary', ''))
-            date = html.escape(item.get('published', ''))
-
-            summary_html = f'<p class="item-summary">{summary}</p>' if summary else ''
-
-            item_html = f"""
-            <div class="item">
-                <div class="item-header">
-                    <span class="item-number">{i}</span>
-                    <a href="{url}" target="_blank" class="item-title">{title}</a>
-                    <span class="item-source">{source}</span>
-                </div>
-                <div class="item-meta">📅 {date}</div>
-                {summary_html}
-            </div>"""
-            items_html.append(item_html)
-
-        return f"""
-        <section class="category">
-            <h2 class="category-title">{html.escape(category)}</h2>
-            {''.join(items_html)}
-        </section>"""
+        return ''.join([
+            f'<div class="item"><h2><a href="{html.escape(i.get("url",""))}">{html.escape(i.get("title",""))}</a></h2><p>{html.escape(i.get("summary",""))}</p><div class="meta">{html.escape(i.get("source",""))}</div></div>'
+            for i in items
+        ])
 
     def save(self, content: str, filepath: str):
-        """Save HTML report to file."""
         with open(filepath, 'w', encoding='utf-8') as f:
             f.write(content)
