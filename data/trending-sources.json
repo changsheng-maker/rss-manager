@@ -1,27 +1,30 @@
 {
-  "_description": "Trending content sources by category",
-  "_version": "1.0.0",
+  "_description": "Trending content sources by category - Enhanced with stable native RSS",
+  "_version": "1.1.0",
   "categories": {
     "ai": {
       "name": "AI & Machine Learning",
       "sources": [
         {
-          "id": "github-trending-ml",
-          "name": "GitHub Trending ML",
-          "url": "https://rsshub.app/github/trending/daily/python",
-          "type": "trending"
-        },
-        {
-          "id": "reddit-ml",
-          "name": "r/MachineLearning",
-          "url": "https://rsshub.app/reddit/r/MachineLearning",
-          "type": "hot"
-        },
-        {
           "id": "hn-ai",
           "name": "Hacker News AI",
-          "url": "https://hnrss.org/newest?q=artificial+intelligence",
-          "type": "search"
+          "url": "https://hnrss.org/newest?q=artificial+intelligence+machine+learning",
+          "type": "search",
+          "stable": true
+        },
+        {
+          "id": "arxiv-ai",
+          "name": "arXiv AI Papers",
+          "url": "https://export.arxiv.org/rss/cs.AI",
+          "type": "new",
+          "stable": true
+        },
+        {
+          "id": "arxiv-ml",
+          "name": "arXiv ML Papers",
+          "url": "https://export.arxiv.org/rss/cs.LG",
+          "type": "new",
+          "stable": true
         }
       ]
     },
@@ -29,22 +32,25 @@
       "name": "Startups & Entrepreneurship",
       "sources": [
         {
-          "id": "producthunt",
-          "name": "Product Hunt Daily",
-          "url": "https://rsshub.app/producthunt",
-          "type": "trending"
-        },
-        {
-          "id": "reddit-startups",
-          "name": "r/startups",
-          "url": "https://rsshub.app/reddit/r/startups",
-          "type": "hot"
-        },
-        {
           "id": "hn-show",
           "name": "Show HN",
           "url": "https://hnrss.org/show",
-          "type": "new"
+          "type": "new",
+          "stable": true
+        },
+        {
+          "id": "hn-ask",
+          "name": "Ask HN",
+          "url": "https://hnrss.org/ask",
+          "type": "new",
+          "stable": true
+        },
+        {
+          "id": "hn-startups",
+          "name": "HN Startups",
+          "url": "https://hnrss.org/newest?q=startup+funding",
+          "type": "search",
+          "stable": true
         }
       ]
     },
@@ -52,22 +58,25 @@
       "name": "Technology",
       "sources": [
         {
-          "id": "github-trending",
-          "name": "GitHub Trending",
-          "url": "https://rsshub.app/github/trending/daily",
-          "type": "trending"
-        },
-        {
           "id": "hackernews",
           "name": "Hacker News Top",
-          "url": "https://rsshub.app/hackernews",
-          "type": "hot"
+          "url": "https://news.ycombinator.com/rss",
+          "type": "hot",
+          "stable": true
         },
         {
-          "id": "reddit-tech",
-          "name": "r/technology",
-          "url": "https://rsshub.app/reddit/r/technology",
-          "type": "hot"
+          "id": "hn-tech",
+          "name": "HN Technology",
+          "url": "https://hnrss.org/newest?q=technology+programming",
+          "type": "search",
+          "stable": true
+        },
+        {
+          "id": "lobsters",
+          "name": "Lobsters",
+          "url": "https://lobste.rs/rss",
+          "type": "hot",
+          "stable": true
         }
       ]
     },
@@ -75,22 +84,25 @@
       "name": "Development",
       "sources": [
         {
-          "id": "github-trending-js",
-          "name": "GitHub Trending JS/TS",
-          "url": "https://rsshub.app/github/trending/daily/typescript",
-          "type": "trending"
+          "id": "hn-dev",
+          "name": "HN Programming",
+          "url": "https://hnrss.org/newest?q=programming+developer",
+          "type": "search",
+          "stable": true
         },
         {
-          "id": "reddit-programming",
-          "name": "r/programming",
-          "url": "https://rsshub.app/reddit/r/programming",
-          "type": "hot"
+          "id": "github-blog",
+          "name": "GitHub Blog",
+          "url": "https://github.blog/feed/",
+          "type": "new",
+          "stable": true
         },
         {
-          "id": "devto-top",
-          "name": "Dev.to Top",
-          "url": "https://rsshub.app/dev.to/top/week",
-          "type": "top"
+          "id": "stackoverflow",
+          "name": "Stack Overflow Blog",
+          "url": "https://stackoverflow.blog/feed/",
+          "type": "new",
+          "stable": true
         }
       ]
     }
