@@ -1,0 +1,352 @@
+{
+  "_description": "Known feed URL patterns for popular sites and platforms. These are direct feed URLs that don't require RSSHub.",
+  "_note": "Replace :placeholder values with actual values for your target site",
+  "platforms": {
+    "wordpress": {
+      "name": "WordPress",
+      "description": "WordPress blogs - the most common blog platform",
+      "patterns": [
+        {
+          "url": "https://:domain/feed/",
+          "example": "https://wordpress.com/feed/",
+          "description": "WordPress default feed (RSS 2.0)"
+        },
+        {
+          "url": "https://:domain/feed.xml",
+          "example": "https://example.com/feed.xml",
+          "description": "WordPress XML feed"
+        },
+        {
+          "url": "https://:domain/feed/atom/",
+          "example": "https://example.com/feed/atom/",
+          "description": "WordPress Atom feed"
+        },
+        {
+          "url": "https://:domain/comments/feed/",
+          "example": "https://example.com/comments/feed/",
+          "description": "WordPress comments feed"
+        },
+        {
+          "url": "https://:domain/category/:category/feed/",
+          "example": "https://example.com/category/tech/feed/",
+          "description": "WordPress category feed"
+        },
+        {
+          "url": "https://:domain/author/:author/feed/",
+          "example": "https://example.com/author/john/feed/",
+          "description": "WordPress author feed"
+        }
+      ]
+    },
+    "ghost": {
+      "name": "Ghost",
+      "description": "Ghost publishing platform",
+      "patterns": [
+        {
+          "url": "https://:domain/rss/",
+          "example": "https://ghost.org/rss/",
+          "description": "Ghost default RSS feed"
+        },
+        {
+          "url": "https://:domain/rss/:tag/",
+          "example": "https://blog.ghost.org/rss/technology/",
+          "description": "Ghost tag feed"
+        },
+        {
+          "url": "https://:domain/author/:author/rss/",
+          "example": "https://blog.ghost.org/author/john/rss/",
+          "description": "Ghost author feed"
+        }
+      ]
+    },
+    "medium": {
+      "name": "Medium",
+      "description": "Medium publishing platform",
+      "patterns": [
+        {
+          "url": "https://medium.com/feed/@:username",
+          "example": "https://medium.com/feed/@ev",
+          "description": "Medium user feed"
+        },
+        {
+          "url": "https://:publication.medium.com/feed",
+          "example": "https://towardsdatascience.com/feed",
+          "description": "Medium publication feed"
+        },
+        {
+          "url": "https://medium.com/feed/:publication",
+          "example": "https://medium.com/feed/free-code-camp",
+          "description": "Medium publication feed (alternative)"
+        }
+      ]
+    },
+    "github": {
+      "name": "GitHub",
+      "description": "GitHub releases and activity feeds",
+      "patterns": [
+        {
+          "url": "https://github.com/:user/:repo/releases.atom",
+          "example": "https://github.com/microsoft/vscode/releases.atom",
+          "description": "GitHub repository releases (Atom)"
+        },
+        {
+          "url": "https://github.com/:user/:repo/commits/:branch.atom",
+          "example": "https://github.com/microsoft/vscode/commits/main.atom",
+          "description": "GitHub repository commits"
+        },
+        {
+          "url": "https://github.com/:user/:repo/tags.atom",
+          "example": "https://github.com/microsoft/vscode/tags.atom",
+          "description": "GitHub repository tags"
+        },
+        {
+          "url": "https://github.com/:user.atom",
+          "example": "https://github.com/torvalds.atom",
+          "description": "GitHub user activity"
+        },
+        {
+          "url": "https://github.com/:user/:repo/issues",
+          "example": "https://github.com/microsoft/vscode/issues",
+          "description": "GitHub issues (add '.atom' for feed)"
+        }
+      ]
+    },
+    "youtube": {
+      "name": "YouTube",
+      "description": "YouTube channel and playlist feeds",
+      "patterns": [
+        {
+          "url": "https://www.youtube.com/feeds/videos.xml?channel_id=:channel_id",
+          "example": "https://www.youtube.com/feeds/videos.xml?channel_id=UC_x5XG1OV2P6uZZ5FSM9Ttw",
+          "description": "YouTube channel uploads (requires channel ID)"
+        },
+        {
+          "url": "https://www.youtube.com/feeds/videos.xml?playlist_id=:playlist_id",
+          "example": "https://www.youtube.com/feeds/videos.xml?playlist_id=PLcK1aop8jdve3g-1Xv34VwQWro8m3_9pU",
+          "description": "YouTube playlist feed"
+        },
+        {
+          "url": "https://www.youtube.com/feeds/videos.xml?user=:username",
+          "example": "https://www.youtube.com/feeds/videos.xml?user=GoogleDevelopers",
+          "description": "YouTube user uploads (legacy username)"
+        }
+      ],
+      "notes": "YouTube channel ID can be found at: https://www.youtube.com/account_advanced"
+    },
+    "bearblog": {
+      "name": "Bear Blog",
+      "description": "Bear Blog minimalist blogging platform",
+      "patterns": [
+        {
+          "url": "https://:subdomain.bearblog.dev/feed/",
+          "example": "https://herman.bearblog.dev/feed/",
+          "description": "Bear Blog feed"
+        },
+        {
+          "url": "https://:customdomain/feed/",
+          "example": "https://example.com/feed/",
+          "description": "Bear Blog with custom domain"
+        }
+      ]
+    },
+    "substack": {
+      "name": "Substack",
+      "description": "Substack newsletter platform",
+      "patterns": [
+        {
+          "url": "https://:name.substack.com/feed",
+          "example": "https://lennyrachitsky.substack.com/feed",
+          "description": "Substack newsletter feed"
+        },
+        {
+          "url": "https://:customdomain/feed",
+          "example": "https://www.platformer.news/feed",
+          "description": "Substack with custom domain"
+        }
+      ]
+    },
+    "devto": {
+      "name": "Dev.to",
+      "description": "Developer community platform",
+      "patterns": [
+        {
+          "url": "https://dev.to/feed/:username",
+          "example": "https://dev.to/feed/ben",
+          "description": "Dev.to user articles"
+        },
+        {
+          "url": "https://dev.to/feed/tag/:tag",
+          "example": "https://dev.to/feed/tag/javascript",
+          "description": "Dev.to articles by tag"
+        },
+        {
+          "url": "https://dev.to/feed",
+          "example": "https://dev.to/feed",
+          "description": "Dev.to main feed"
+        }
+      ]
+    },
+    "hashnode": {
+      "name": "Hashnode",
+      "description": "Developer blogging platform",
+      "patterns": [
+        {
+          "url": "https://:username.hashnode.dev/rss.xml",
+          "example": "https://edisondev.hashnode.dev/rss.xml",
+          "description": "Hashnode user blog feed"
+        }
+      ]
+    },
+    "jekyll": {
+      "name": "Jekyll",
+      "description": "Jekyll static site generator",
+      "patterns": [
+        {
+          "url": "https://:domain/feed.xml",
+          "example": "https://jekyllrb.com/feed.xml",
+          "description": "Jekyll default feed"
+        },
+        {
+          "url": "https://:domain/feed.atom",
+          "example": "https://example.com/feed.atom",
+          "description": "Jekyll Atom feed"
+        }
+      ]
+    },
+    "gatsby": {
+      "name": "Gatsby",
+      "description": "Gatsby static site generator",
+      "patterns": [
+        {
+          "url": "https://:domain/rss.xml",
+          "example": "https://www.gatsbyjs.com/rss.xml",
+          "description": "Gatsby default RSS feed"
+        }
+      ]
+    },
+    "nextjs": {
+      "name": "Next.js",
+      "description": "Next.js static site feeds",
+      "patterns": [
+        {
+          "url": "https://:domain/feed.xml",
+          "example": "https://nextjs.org/feed.xml",
+          "description": "Next.js feed (common pattern)"
+        },
+        {
+          "url": "https://:domain/rss",
+          "example": "https://example.com/rss",
+          "description": "Next.js RSS endpoint"
+        }
+      ]
+    },
+    "astro": {
+      "name": "Astro",
+      "description": "Astro static site builder",
+      "patterns": [
+        {
+          "url": "https://:domain/rss.xml",
+          "example": "https://astro.build/rss.xml",
+          "description": "Astro RSS feed"
+        }
+      ]
+    },
+    "hugo": {
+      "name": "Hugo",
+      "description": "Hugo static site generator",
+      "patterns": [
+        {
+          "url": "https://:domain/index.xml",
+          "example": "https://gohugo.io/index.xml",
+          "description": "Hugo default RSS feed"
+        },
+        {
+          "url": "https://:domain/:section/index.xml",
+          "example": "https://gohugo.io/news/index.xml",
+          "description": "Hugo section feed"
+        }
+      ]
+    },
+    "eleventy": {
+      "name": "Eleventy (11ty)",
+      "description": "Eleventy static site generator",
+      "patterns": [
+        {
+          "url": "https://:domain/feed.xml",
+          "example": "https://www.11ty.dev/feed.xml",
+          "description": "Eleventy RSS feed"
+        }
+      ]
+    },
+    "tumblr": {
+      "name": "Tumblr",
+      "description": "Tumblr blogging platform",
+      "patterns": [
+        {
+          "url": "https://:username.tumblr.com/rss",
+          "example": "https://staff.tumblr.com/rss",
+          "description": "Tumblr blog RSS"
+        }
+      ]
+    },
+    "squarespace": {
+      "name": "Squarespace",
+      "description": "Squarespace website builder",
+      "patterns": [
+        {
+          "url": "https://:domain/:blog-slug?format=rss",
+          "example": "https://example.com/blog?format=rss",
+          "description": "Squarespace blog RSS"
+        }
+      ]
+    },
+    "wix": {
+      "name": "Wix",
+      "description": "Wix website builder",
+      "patterns": [
+        {
+          "url": "https://:domain/blog-feed.xml",
+          "example": "https://example.com/blog-feed.xml",
+          "description": "Wix blog RSS feed"
+        }
+      ]
+    },
+    "shopify": {
+      "name": "Shopify",
+      "description": "Shopify e-commerce blogs",
+      "patterns": [
+        {
+          "url": "https://:domain/:blog-slug.atom",
+          "example": "https://example.com/blogs/news.atom",
+          "description": "Shopify blog Atom feed"
+        }
+      ]
+    }
+  },
+  "discovery": {
+    "_description": "Methods to discover RSS feeds on unknown sites",
+    "techniques": [
+      {
+        "method": "Check common paths",
+        "paths": ["/feed", "/feed.xml", "/rss", "/rss.xml", "/atom.xml", "/index.xml", "/feeds"]
+      },
+      {
+        "method": "Look for RSS link in HTML",
+        "notes": "Search for <link rel='alternate' type='application/rss+xml'> in page source"
+      },
+      {
+        "method": "Use feed discovery service",
+        "services": [
+          "https://rsshub.app - RSSHub feed generator",
+          "https://www.rsslookup.com - Feed lookup service",
+          "Browser extensions like RSS Feed Reader"
+        ]
+      },
+      {
+        "method": "Check robots.txt",
+        "path": "/robots.txt",
+        "notes": "May contain sitemap URLs which can lead to feeds"
+      }
+    ]
+  }
+}

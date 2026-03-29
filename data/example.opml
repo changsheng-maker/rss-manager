@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<opml version="2.0">
+  <head>
+    <title>Example Tech RSS Feeds</title>
+    <dateCreated>Sat, 29 Mar 2026 00:00:00 GMT</dateCreated>
+    <dateModified>Sat, 29 Mar 2026 00:00:00 GMT</dateModified>
+    <ownerName>RSS Manager</ownerName>
+    <ownerEmail>rss@example.com</ownerEmail>
+  </head>
+  <body>
+    <!-- News & Hacker News -->
+    <outline text="News" title="News">
+      <outline text="Hacker News" title="Hacker News"
+        type="rss"
+        xmlUrl="https://rsshub.app/hackernews"
+        htmlUrl="https://news.ycombinator.com"
+        description="Hacker News top stories" />
+      <outline text="Hacker News Best" title="Hacker News Best"
+        type="rss"
+        xmlUrl="https://rsshub.app/hackernews/best"
+        htmlUrl="https://news.ycombinator.com/best"
+        description="Hacker News best stories" />
+    </outline>
+
+    <!-- Development & Open Source -->
+    <outline text="Development" title="Development">
+      <outline text="GitHub Blog" title="GitHub Blog"
+        type="rss"
+        xmlUrl="https://github.blog/feed/"
+        htmlUrl="https://github.blog"
+        description="Updates, ideas, and inspiration from GitHub" />
+      <outline text="GitHub Trending" title="GitHub Trending"
+        type="rss"
+        xmlUrl="https://rsshub.app/github/trending/daily/"
+        htmlUrl="https://github.com/trending"
+        description="Daily trending GitHub repositories" />
+      <outline text="Dev.to Community" title="Dev.to Community"
+        type="rss"
+        xmlUrl="https://dev.to/feed"
+        htmlUrl="https://dev.to"
+        description="Dev.to community articles" />
+    </outline>
+
+    <!-- AI & Machine Learning -->
+    <outline text="AI & Machine Learning" title="AI & Machine Learning">
+      <outline text="Papers with Code" title="Papers with Code"
+        type="rss"
+        xmlUrl="https://paperswithcode.com/rss"
+        htmlUrl="https://paperswithcode.com"
+        description="Latest machine learning papers with code" />
+      <outline text="OpenAI Blog" title="OpenAI Blog"
+        type="rss"
+        xmlUrl="https://openai.com/blog/rss.xml"
+        htmlUrl="https://openai.com/blog"
+        description="OpenAI research and product updates" />
+      <outline text="Hugging Face Blog" title="Hugging Face Blog"
+        type="rss"
+        xmlUrl="https://huggingface.co/blog/feed.xml"
+        htmlUrl="https://huggingface.co/blog"
+        description="Hugging Face blog posts" />
+      <outline text="Anthropic News" title="Anthropic News"
+        type="rss"
+        xmlUrl="https://www.anthropic.com/news/rss.xml"
+        htmlUrl="https://www.anthropic.com/news"
+        description="Anthropic news and updates" />
+      <outline text="Google AI Blog" title="Google AI Blog"
+        type="rss"
+        xmlUrl="http://ai.googleblog.com/feeds/posts/default"
+        htmlUrl="https://ai.googleblog.com"
+        description="Google AI research blog" />
+      <outline text="DeepMind Blog" title="DeepMind Blog"
+        type="rss"
+        xmlUrl="https://deepmind.google/blog/rss.xml"
+        htmlUrl="https://deepmind.google/blog"
+        description="DeepMind research and news" />
+    </outline>
+
+    <!-- Tech News -->
+    <outline text="Tech News" title="Tech News">
+      <outline text="The Verge" title="The Verge"
+        type="rss"
+        xmlUrl="https://www.theverge.com/rss/index.xml"
+        htmlUrl="https://www.theverge.com"
+        description="The Verge - technology news" />
+      <outline text="TechCrunch" title="TechCrunch"
+        type="rss"
+        xmlUrl="https://techcrunch.com/feed/"
+        htmlUrl="https://techcrunch.com"
+        description="TechCrunch startup and technology news" />
+      <outline text="Ars Technica" title="Ars Technica"
+        type="rss"
+        xmlUrl="https://feeds.arstechnica.com/arstechnica/index"
+        htmlUrl="https://arstechnica.com"
+        description="Ars Technica - technology news and reviews" />
+      <outline text="Wired" title="Wired"
+        type="rss"
+        xmlUrl="https://www.wired.com/feed/rss"
+        htmlUrl="https://www.wired.com"
+        description="Wired - science, technology, and culture" />
+    </outline>
+
+    <!-- Programming Languages & Frameworks -->
+    <outline text="Languages & Frameworks" title="Languages & Frameworks">
+      <outline text="Rust Blog" title="Rust Blog"
+        type="rss"
+        xmlUrl="https://blog.rust-lang.org/feed.xml"
+        htmlUrl="https://blog.rust-lang.org"
+        description="The Rust Programming Language Blog" />
+      <outline text="Go Blog" title="Go Blog"
+        type="rss"
+        xmlUrl="https://go.dev/blog/feed.atom"
+        htmlUrl="https://go.dev/blog"
+        description="The Go Programming Language Blog" />
+      <outline text="Python Insider" title="Python Insider"
+        type="rss"
+        xmlUrl="https://blog.python.org/feeds/posts/default"
+        htmlUrl="https://blog.python.org"
+        description="Python core development blog" />
+      <outline text="React Blog" title="React Blog"
+        type="rss"
+        xmlUrl="https://react.dev/rss.xml"
+        htmlUrl="https://react.dev/blog"
+        description="React blog and updates" />
+      <outline text="Vue.js News" title="Vue.js News"
+        type="rss"
+        xmlUrl="https://news.vuejs.org/feed.xml"
+        htmlUrl="https://news.vuejs.org"
+        description="Vue.js news and updates" />
+    </outline>
+
+    <!-- Developer Blogs -->
+    <outline text="Developer Blogs" title="Developer Blogs">
+      <outline text="Daring Fireball" title="Daring Fireball"
+        type="rss"
+        xmlUrl="https://daringfireball.net/feeds/main"
+        htmlUrl="https://daringfireball.net"
+        description="John Gruber's tech commentary" />
+      <outline text="Paul Graham Essays" title="Paul Graham Essays"
+        type="rss"
+        xmlUrl="http://www.aaronsw.com/2002/feeds/pgessays.rss"
+        htmlUrl="http://paulgraham.com/articles.html"
+        description="Paul Graham's essays" />
+      <outline text="Martin Fowler" title="Martin Fowler"
+        type="rss"
+        xmlUrl="https://martinfowler.com/feed.atom"
+        htmlUrl="https://martinfowler.com"
+        description="Martin Fowler's bliki" />
+      <outline text="CSS-Tricks" title="CSS-Tricks"
+        type="rss"
+        xmlUrl="https://css-tricks.com/feed/"
+        htmlUrl="https://css-tricks.com"
+        description="CSS-Tricks web development" />
+      <outline text="Smashing Magazine" title="Smashing Magazine"
+        type="rss"
+        xmlUrl="https://www.smashingmagazine.com/feed/"
+        htmlUrl="https://www.smashingmagazine.com"
+        description="Smashing Magazine for web designers" />
+    </outline>
+
+    <!-- Startups & Business -->
+    <outline text="Startups & Business" title="Startups & Business">
+      <outline text="Y Combinator Blog" title="Y Combinator Blog"
+        type="rss"
+        xmlUrl="https://blog.ycombinator.com/feed/"
+        htmlUrl="https://blog.ycombinator.com"
+        description="Y Combinator startup blog" />
+      <outline text="First Round Review" title="First Round Review"
+        type="rss"
+        xmlUrl="https://review.firstround.com/rss"
+        htmlUrl="https://review.firstround.com"
+        description="First Round Capital's management and startup advice" />
+      <outline text="a16z" title="a16z"
+        type="rss"
+        xmlUrl="https://a16z.com/feed/"
+        htmlUrl="https://a16z.com"
+        description="Andreessen Horowitz blog" />
+      <outline text="Stratechery" title="Stratechery"
+        type="rss"
+        xmlUrl="https://stratechery.com/feed/"
+        htmlUrl="https://stratechery.com"
+        description="Ben Thompson's analysis of technology and media" />
+    </outline>
+
+    <!-- Science -->
+    <outline text="Science" title="Science">
+      <outline text="Nature News" title="Nature News"
+        type="rss"
+        xmlUrl="https://www.nature.com/nature.rss"
+        htmlUrl="https://www.nature.com"
+        description="Nature journal news" />
+      <outline text="Scientific American" title="Scientific American"
+        type="rss"
+        xmlUrl="https://rss.sciam.com/ScientificAmerican-Global"
+        htmlUrl="https://www.scientificamerican.com"
+        description="Scientific American articles" />
+    </outline>
+
+    <!-- Productivity & Tools -->
+    <outline text="Productivity & Tools" title="Productivity & Tools">
+      <outline text="Notion Blog" title="Notion Blog"
+        type="rss"
+        xmlUrl="https://www.notion.so/blog/rss"
+        htmlUrl="https://www.notion.so/blog"
+        description="Notion product updates and tips" />
+      <outline text="Product Hunt" title="Product Hunt"
+        type="rss"
+        xmlUrl="https://www.producthunt.com/feed"
+        htmlUrl="https://www.producthunt.com"
+        description="Product Hunt new products" />
+    </outline>
+  </body>
+</opml>

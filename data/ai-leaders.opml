@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<opml version="2.0">
+  <head>
+    <title>AI Leaders &amp; Researchers RSS Feeds</title>
+    <dateCreated>2026-03-29</dateCreated>
+    <description>Curated RSS feeds for top AI/ML researchers, companies, and newsletters</description>
+  </head>
+  <body>
+    <outline text="🏆 AI Godfathers" title="AI Godfathers">
+      <outline type="rss" text="Yann LeCun (Twitter)" title="Yann LeCun Twitter"
+               xmlUrl="https://rsshub.app/twitter/user/ylecun"/>
+      <outline type="rss" text="Geoffrey Hinton (Twitter)" title="Geoffrey Hinton Twitter"
+               xmlUrl="https://rsshub.app/twitter/user/geoffreyhinton"/>
+      <outline type="rss" text="Yoshua Bengio (Twitter)" title="Yoshua Bengio Twitter"
+               xmlUrl="https://rsshub.app/twitter/user/yoshuabengio"/>
+    </outline>
+
+    <outline text="🌟 Top Researchers" title="Top Researchers">
+      <outline type="rss" text="Andrej Karpathy Blog" title="Andrej Karpathy Blog"
+               xmlUrl="https://karpathy.bearblog.dev/feed/"/>
+      <outline type="rss" text="Andrej Karpathy Medium" title="Andrej Karpathy Medium"
+               xmlUrl="https://medium.com/feed/@karpathy"/>
+      <outline type="rss" text="Andrej Karpathy YouTube" title="Andrej Karpathy YouTube"
+               xmlUrl="https://www.youtube.com/feeds/videos.xml?channel_id=UCXUPKJO5IZBcRAXB2HSLM8g"/>
+      <outline type="rss" text="Andrej Karpathy Twitter" title="Andrej Karpathy Twitter"
+               xmlUrl="https://rsshub.app/twitter/user/karpathy"/>
+
+      <outline type="rss" text="Andrew Ng Twitter" title="Andrew Ng Twitter"
+               xmlUrl="https://rsshub.app/twitter/user/AndrewYNg"/>
+      <outline type="rss" text="Andrew Ng GitHub" title="Andrew Ng GitHub"
+               xmlUrl="https://github.com/andrewng.atom"/>
+
+      <outline type="rss" text="Fei-Fei Li Twitter" title="Fei-Fei Li Twitter"
+               xmlUrl="https://rsshub.app/twitter/user/drfeifei"/>
+
+      <outline type="rss" text="Ian Goodfellow Twitter" title="Ian Goodfellow Twitter"
+               xmlUrl="https://rsshub.app/twitter/user/goodfellow_ian"/>
+
+      <outline type="rss" text="Jeremy Howard Blog (fast.ai)" title="Jeremy Howard fast.ai"
+               xmlUrl="https://www.fast.ai/atom.xml"/>
+      <outline type="rss" text="Jeremy Howard Twitter" title="Jeremy Howard Twitter"
+               xmlUrl="https://rsshub.app/twitter/user/jeremyphoward"/>
+      <outline type="rss" text="fast.ai GitHub" title="fast.ai GitHub"
+               xmlUrl="https://github.com/fastai.atom"/>
+
+      <outline type="rss" text="Pieter Abbeel Twitter" title="Pieter Abbeel Twitter"
+               xmlUrl="https://rsshub.app/twitter/user/pabbeel"/>
+
+      <outline type="rss" text="Chelsea Finn Twitter" title="Chelsea Finn Twitter"
+               xmlUrl="https://rsshub.app/twitter/user/chelseabfinn"/>
+      <outline type="rss" text="Chelsea Finn GitHub" title="Chelsea Finn GitHub"
+               xmlUrl="https://github.com/cbfinn.atom"/>
+
+      <outline type="rss" text="Sergey Levine Twitter" title="Sergey Levine Twitter"
+               xmlUrl="https://rsshub.app/twitter/user/svlevine"/>
+
+      <outline type="rss" text="Timnit Gebru Twitter" title="Timnit Gebru Twitter"
+               xmlUrl="https://rsshub.app/twitter/user/timnitgebru"/>
+      <outline type="rss" text="DAIR Institute" title="DAIR Institute"
+               xmlUrl="https://rsshub.app/dair-ai.atom"/>
+
+      <outline type="rss" text="Emily Bender Twitter" title="Emily Bender Twitter"
+               xmlUrl="https://rsshub.app/twitter/user/emilymbender"/>
+
+      <outline type="rss" text="Margaret Mitchell Twitter" title="Margaret Mitchell Twitter"
+               xmlUrl="https://rsshub.app/twitter/user/mmitchell_ai"/>
+      <outline type="rss" text="Hugging Face" title="Hugging Face"
+               xmlUrl="https://huggingface.co/blog/feed.xml"/>
+    </outline>
+
+    <outline text="🏢 AI Companies" title="AI Companies">
+      <outline type="rss" text="OpenAI Blog" title="OpenAI Blog"
+               xmlUrl="https://openai.com/blog/rss.xml"/>
+      <outline type="rss" text="OpenAI YouTube" title="OpenAI YouTube"
+               xmlUrl="https://www.youtube.com/feeds/videos.xml?channel_id=UCXZCJLdBC09M2sCNFf0RTMQ"/>
+
+      <outline type="rss" text="Anthropic Blog" title="Anthropic Blog"
+               xmlUrl="https://www.anthropic.com/blog/rss.xml"/>
+
+      <outline type="rss" text="DeepMind Blog" title="DeepMind Blog"
+               xmlUrl="https://deepmind.com/blog/feed"/>
+      <outline type="rss" text="DeepMind YouTube" title="DeepMind YouTube"
+               xmlUrl="https://www.youtube.com/feeds/videos.xml?channel_id=UC5k0YBIoWuvIhFqq0gLpmYg"/>
+
+      <outline type="rss" text="Google AI Blog" title="Google AI Blog"
+               xmlUrl="https://ai.googleblog.com/feeds/posts/default"/>
+
+      <outline type="rss" text="Meta AI Research" title="Meta AI Research"
+               xmlUrl="https://ai.facebook.com/blog/rss"/>
+
+      <outline type="rss" text="Stability AI Blog" title="Stability AI Blog"
+               xmlUrl="https://stability.ai/blog/rss.xml"/>
+
+      <outline type="rss" text="Hugging Face Blog" title="Hugging Face Blog"
+               xmlUrl="https://huggingface.co/blog/feed.xml"/>
+      <outline type="rss" text="Hugging Face YouTube" title="Hugging Face YouTube"
+               xmlUrl="https://www.youtube.com/feeds/videos.xml?channel_id=UCHlNU7kIZhQteqO7I2YTb7Q"/>
+    </outline>
+
+    <outline text="📰 Newsletters" title="Newsletters">
+      <outline type="rss" text="The Batch (Andrew Ng)" title="The Batch"
+               xmlUrl="https://www.deeplearning.ai/the-batch/feed/"/>
+      <outline type="rss" text="Import AI (Jack Clark)" title="Import AI"
+               xmlUrl="https://importai.substack.com/feed"/>
+      <outline type="rss" text="TLDR AI" title="TLDR AI"
+               xmlUrl="https://tldr.tech/ai/rss"/>
+      <outline type="rss" text="AI Weekly" title="AI Weekly"
+               xmlUrl="https://aiweekly.co/rss"/>
+    </outline>
+
+    <outline text="📚 Academic & Research" title="Academic & Research">
+      <outline type="rss" text="arXiv AI (CS.AI)" title="arXiv CS.AI"
+               xmlUrl="https://export.arxiv.org/rss/cs.AI"/>
+      <outline type="rss" text="arXiv Machine Learning (CS.LG)" title="arXiv CS.LG"
+               xmlUrl="https://export.arxiv.org/rss/cs.LG"/>
+      <outline type="rss" text="arXiv CL/NLP (CS.CL)" title="arXiv CS.CL"
+               xmlUrl="https://export.arxiv.org/rss/cs.CL"/>
+      <outline type="rss" text="arXiv Computer Vision (CS.CV)" title="arXiv CS.CV"
+               xmlUrl="https://export.arxiv.org/rss/cs.CV"/>
+
+      <outline type="rss" text="Distill.pub" title="Distill.pub"
+               xmlUrl="https://distill.pub/rss.xml"/>
+
+      <outline type="rss" text="Papers with Code" title="Papers with Code"
+               xmlUrl="https://paperswithcode.com/feed"/>
+    </outline>
+
+    <outline text="🎬 YouTube Channels" title="YouTube Channels">
+      <outline type="rss" text="Two Minute Papers" title="Two Minute Papers"
+               xmlUrl="https://www.youtube.com/feeds/videos.xml?channel_id=UCUCxE_e9z1cP0u7ThiE_MiQ"/>
+      <outline type="rss" text="Lex Fridman Podcast" title="Lex Fridman Podcast"
+               xmlUrl="https://www.youtube.com/feeds/videos.xml?channel_id=UCSMOQeXrTbV7JvgS4xC1Xzw"/>
+      <outline type="rss" text="Machine Learning Street Talk" title="ML Street Talk"
+               xmlUrl="https://www.youtube.com/feeds/videos.xml?channel_id=UCMLtBahI5DMrt0NPvDSoIRQ"/>
+    </outline>
+
+    <outline text="💻 Developer Resources" title="Developer Resources">
+      <outline type="rss" text="Hacker News AI" title="Hacker News AI"
+               xmlUrl="https://hnrss.org/newest?q=artificial+intelligence+machine+learning"/>
+      <outline type="rss" text="GitHub Trending ML" title="GitHub Trending ML"
+               xmlUrl="https://rsshub.app/github/trending/daily/python"/>
+    </outline>
+  </body>
+</opml>

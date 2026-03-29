@@ -1,0 +1,16 @@
+{
+  "name": "rss-manager",
+  "version": "1.0.0",
+  "description": "Discover, manage, and organize RSS feeds. Auto-detect feeds on any website, subscribe to RSSHub routes, import/export OPML, and maintain a personal feed library.",
+  "author": "Claude",
+  "commands": [
+    {"name": "rss-discover", "description": "Discover RSS feeds from a URL"},
+    {"name": "rss-add", "description": "Add a feed to your collection"},
+    {"name": "rss-list", "description": "List all subscribed feeds"},
+    {"name": "rss-remove", "description": "Remove a feed"},
+    {"name": "rss-import", "description": "Import feeds from OPML file"},
+    {"name": "rss-export", "description": "Export feeds to OPML"},
+    {"name": "rss-rsshub", "description": "Browse RSSHub routes"}
+  ],
+  "triggers": ["rss", "feed", "subscribe", "follow blog", "news feed", "OPML"]
+}

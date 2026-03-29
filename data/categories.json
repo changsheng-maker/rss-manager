@@ -1,0 +1,176 @@
+{
+  "_description": "Default categories for organizing RSS feeds",
+  "_version": "1.0.0",
+  "categories": [
+    {
+      "id": "technology",
+      "name": "Technology",
+      "description": "General technology news, updates, and discussions",
+      "icon": "cpu",
+      "color": "#3b82f6",
+      "keywords": ["tech", "software", "hardware", "gadgets", "computing"],
+      "examples": [
+        "Hacker News",
+        "TechCrunch",
+        "The Verge",
+        "Ars Technica"
+      ]
+    },
+    {
+      "id": "ai-ml",
+      "name": "AI & Machine Learning",
+      "description": "Artificial intelligence, machine learning, and data science",
+      "icon": "brain",
+      "color": "#8b5cf6",
+      "keywords": ["AI", "ML", "deep learning", "neural networks", "LLM", "GPT", "data science"],
+      "examples": [
+        "Papers with Code",
+        "AI Research",
+        "Hugging Face Blog",
+        "OpenAI Blog"
+      ]
+    },
+    {
+      "id": "news",
+      "name": "News & Current Events",
+      "description": "General news, current events, and journalism",
+      "icon": "newspaper",
+      "color": "#ef4444",
+      "keywords": ["news", "current events", "journalism", "headlines", "world"],
+      "examples": [
+        "BBC News",
+        "Reuters",
+        "Associated Press",
+        "NYT"
+      ]
+    },
+    {
+      "id": "blogs",
+      "name": "Personal Blogs",
+      "description": "Personal blogs and individual writers",
+      "icon": "pencil",
+      "color": "#10b981",
+      "keywords": ["blog", "personal", "writing", "essays", "thoughts"],
+      "examples": [
+        "Paul Graham",
+        "Daring Fireball",
+        "Wait But Why"
+      ]
+    },
+    {
+      "id": "video",
+      "name": "Video Content",
+      "description": "Video channels, podcasts, and multimedia content",
+      "icon": "video",
+      "color": "#f59e0b",
+      "keywords": ["video", "youtube", "podcast", "streaming", "multimedia"],
+      "examples": [
+        "YouTube Channels",
+        "Vimeo",
+        "Podcast feeds"
+      ]
+    },
+    {
+      "id": "social",
+      "name": "Social Media",
+      "description": "Social media feeds and community discussions",
+      "icon": "users",
+      "color": "#ec4899",
+      "keywords": ["social", "twitter", "reddit", "community", "discussions"],
+      "examples": [
+        "Twitter/X feeds",
+        "Reddit subreddits",
+        "Mastodon",
+        "Telegram channels"
+      ]
+    },
+    {
+      "id": "development",
+      "name": "Development",
+      "description": "Software development, programming, and engineering",
+      "icon": "code",
+      "color": "#06b6d4",
+      "keywords": ["programming", "coding", "software", "development", "engineering"],
+      "examples": [
+        "GitHub releases",
+        "Dev.to",
+        "Stack Overflow",
+        "Programming blogs"
+      ]
+    },
+    {
+      "id": "science",
+      "name": "Science",
+      "description": "Scientific research, discoveries, and publications",
+      "icon": "flask",
+      "color": "#6366f1",
+      "keywords": ["science", "research", "physics", "biology", "chemistry", "nature"],
+      "examples": [
+        "Nature",
+        "Science Magazine",
+        "ArXiv",
+        "Scientific American"
+      ]
+    },
+    {
+      "id": "design",
+      "name": "Design",
+      "description": "UI/UX design, graphic design, and creative inspiration",
+      "icon": "palette",
+      "color": "#f97316",
+      "keywords": ["design", "UI", "UX", "graphic design", "inspiration", "art"],
+      "examples": [
+        "Dribbble",
+        "Behance",
+        "Smashing Magazine",
+        "A List Apart"
+      ]
+    },
+    {
+      "id": "business",
+      "name": "Business",
+      "description": "Business, startups, entrepreneurship, and finance",
+      "icon": "trending-up",
+      "color": "#14b8a6",
+      "keywords": ["business", "startup", "entrepreneurship", "finance", "economy"],
+      "examples": [
+        "Y Combinator",
+        "First Round Review",
+        "a16z",
+        "Stratechery"
+      ]
+    },
+    {
+      "id": "productivity",
+      "name": "Productivity",
+      "description": "Productivity, personal development, and workflows",
+      "icon": "check-circle",
+      "color": "#22c55e",
+      "keywords": ["productivity", "workflow", "tools", "lifehacks", "organization"],
+      "examples": [
+        "Lifehacker",
+        "Product Hunt",
+        "Notion Blog"
+      ]
+    },
+    {
+      "id": "chinese",
+      "name": "Chinese Content",
+      "description": "Chinese language content and platforms",
+      "icon": "globe",
+      "color": "#dc2626",
+      "keywords": ["chinese", "中文", "weibo", "zhihu", "bilibili"],
+      "examples": [
+        "微博",
+        "知乎",
+        "小红书",
+        "公众号"
+      ]
+    }
+  ],
+  "metadata": {
+    "defaultCategory": "technology",
+    "allowCustom": true,
+    "maxCategoriesPerFeed": 3
+  }
+}

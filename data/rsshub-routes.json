@@ -1,0 +1,296 @@
+{
+  "_description": "Popular RSSHub routes organized by category. RSSHub is an open source RSS feed generator that makes RSS feeds for websites that don't provide them.",
+  "_note": "For full list visit: https://rsshub.app",
+  "categories": {
+    "social": {
+      "name": "Social Media",
+      "description": "Feeds from popular social media platforms",
+      "routes": [
+        {
+          "route": "/twitter/user/:id",
+          "example": "https://rsshub.app/twitter/user/elonmusk",
+          "description": "Twitter/X user timeline",
+          "params": ["id"],
+          "notes": "Requires authentication via environment variables"
+        },
+        {
+          "route": "/twitter/keyword/:keyword",
+          "example": "https://rsshub.app/twitter/keyword/AI",
+          "description": "Twitter/X search results",
+          "params": ["keyword"]
+        },
+        {
+          "route": "/youtube/channel/:id",
+          "example": "https://rsshub.app/youtube/channel/UC_x5XG1OV2P6uZZ5FSM9Ttw",
+          "description": "YouTube channel uploads",
+          "params": ["id"],
+          "notes": "Channel ID can be found in channel URL"
+        },
+        {
+          "route": "/youtube/playlist/:id",
+          "example": "https://rsshub.app/youtube/playlist/PLcK1aop8jdve3g-1Xv34VwQWro8m3_9pU",
+          "description": "YouTube playlist",
+          "params": ["id"]
+        },
+        {
+          "route": "/reddit/r/:channel",
+          "example": "https://rsshub.app/reddit/r/technology",
+          "description": "Reddit subreddit posts",
+          "params": ["channel"]
+        },
+        {
+          "route": "/reddit/user/:name",
+          "example": "https://rsshub.app/reddit/user/spez",
+          "description": "Reddit user posts",
+          "params": ["name"]
+        },
+        {
+          "route": "/telegram/channel/:id",
+          "example": "https://rsshub.app/telegram/channel/durov",
+          "description": "Telegram channel messages",
+          "params": ["id"],
+          "notes": "Channel ID without @ symbol"
+        },
+        {
+          "route": "/mastodon/acct/:acct/statuses",
+          "example": "https://rsshub.app/mastodon/acct/@Gargron@mastodon.social/statuses",
+          "description": "Mastodon user toots",
+          "params": ["acct"]
+        }
+      ]
+    },
+    "development": {
+      "name": "Development",
+      "description": "Feeds for developers and open source projects",
+      "routes": [
+        {
+          "route": "/github/repo/:user/:repo/releases",
+          "example": "https://rsshub.app/github/repo/microsoft/vscode/releases",
+          "description": "GitHub repository releases",
+          "params": ["user", "repo"]
+        },
+        {
+          "route": "/github/repo/:user/:repo/commits/:branch",
+          "example": "https://rsshub.app/github/repo/microsoft/vscode/commits/master",
+          "description": "GitHub repository commits",
+          "params": ["user", "repo", "branch"]
+        },
+        {
+          "route": "/github/repo/:user/:repo/issues",
+          "example": "https://rsshub.app/github/repo/microsoft/vscode/issues",
+          "description": "GitHub repository issues",
+          "params": ["user", "repo"]
+        },
+        {
+          "route": "/github/repo/:user/:repo/pulls",
+          "example": "https://rsshub.app/github/repo/microsoft/vscode/pulls",
+          "description": "GitHub repository pull requests",
+          "params": ["user", "repo"]
+        },
+        {
+          "route": "/github/trending/:since/:language",
+          "example": "https://rsshub.app/github/trending/daily/python",
+          "description": "GitHub trending repositories",
+          "params": ["since", "language"],
+          "notes": "since: daily/weekly/monthly; language: any GitHub language"
+        },
+        {
+          "route": "/gitlab/project/:namespace/:project/releases",
+          "example": "https://rsshub.app/gitlab/project/gitlab-org/gitlab/releases",
+          "description": "GitLab project releases",
+          "params": ["namespace", "project"]
+        },
+        {
+          "route": "/gitlab/explore/trending",
+          "example": "https://rsshub.app/gitlab/explore/trending",
+          "description": "GitLab trending projects",
+          "params": []
+        },
+        {
+          "route": "/stackoverflow/questions/tagged/:tag",
+          "example": "https://rsshub.app/stackoverflow/questions/tagged/javascript",
+          "description": "Stack Overflow questions by tag",
+          "params": ["tag"]
+        }
+      ]
+    },
+    "news": {
+      "name": "News & Media",
+      "description": "News aggregation feeds",
+      "routes": [
+        {
+          "route": "/hackernews",
+          "example": "https://rsshub.app/hackernews",
+          "description": "Hacker News top stories",
+          "params": []
+        },
+        {
+          "route": "/hackernews/best",
+          "example": "https://rsshub.app/hackernews/best",
+          "description": "Hacker News best stories",
+          "params": []
+        },
+        {
+          "route": "/hackernews/newest",
+          "example": "https://rsshub.app/hackernews/newest",
+          "description": "Hacker News newest stories",
+          "params": []
+        },
+        {
+          "route": "/hackernews/user/:id",
+          "example": "https://rsshub.app/hackernews/user/patio11",
+          "description": "Hacker News user submissions",
+          "params": ["id"]
+        },
+        {
+          "route": "/nytimes",
+          "example": "https://rsshub.app/nytimes",
+          "description": "New York Times - Most Popular",
+          "params": []
+        },
+        {
+          "route": "/nytimes/:category",
+          "example": "https://rsshub.app/nytimes/technology",
+          "description": "New York Times by category",
+          "params": ["category"],
+          "notes": "Categories: technology, science, health, business, etc."
+        },
+        {
+          "route": "/bbc",
+          "example": "https://rsshub.app/bbc",
+          "description": "BBC Top Stories",
+          "params": []
+        },
+        {
+          "route": "/bbc/:channel",
+          "example": "https://rsshub.app/bbc/technology",
+          "description": "BBC by channel",
+          "params": ["channel"]
+        }
+      ]
+    },
+    "blogs": {
+      "name": "Blogs & Publishing",
+      "description": "Blog and publishing platform feeds",
+      "routes": [
+        {
+          "route": "/medium/tag/:tag",
+          "example": "https://rsshub.app/medium/tag/artificial-intelligence",
+          "description": "Medium articles by tag",
+          "params": ["tag"]
+        },
+        {
+          "route": "/medium/user/:name",
+          "example": "https://rsshub.app/medium/user/@claude",
+          "description": "Medium user publications",
+          "params": ["name"]
+        },
+        {
+          "route": "/dev.to/:user",
+          "example": "https://rsshub.app/dev.to/ben",
+          "description": "Dev.to user articles",
+          "params": ["user"]
+        },
+        {
+          "route": "/dev.to/top/:period/:tag",
+          "example": "https://rsshub.app/dev.to/top/week/javascript",
+          "description": "Dev.to top articles by tag",
+          "params": ["period", "tag"],
+          "notes": "period: day, week, month, year, infinity"
+        },
+        {
+          "route": "/substack/:user",
+          "example": "https://rsshub.app/substack/lenny",
+          "description": "Substack newsletter",
+          "params": ["user"]
+        }
+      ]
+    },
+    "video": {
+      "name": "Video Platforms",
+      "description": "Video platform feeds",
+      "routes": [
+        {
+          "route": "/bilibili/user/video/:uid",
+          "example": "https://rsshub.app/bilibili/user/video/208259",
+          "description": "Bilibili user uploads",
+          "params": ["uid"]
+        },
+        {
+          "route": "/bilibili/bangumi/media/:mediaid",
+          "example": "https://rsshub.app/bilibili/bangumi/media/91912",
+          "description": "Bilibili bangumi/series",
+          "params": ["mediaid"]
+        },
+        {
+          "route": "/bilibili/video/reply/:bvid",
+          "example": "https://rsshub.app/bilibili/video/reply/BV1xx411c7mD",
+          "description": "Bilibili video comments/replies",
+          "params": ["bvid"]
+        },
+        {
+          "route": "/vimeo/user/:username",
+          "example": "https://rsshub.app/vimeo/user/staff",
+          "description": "Vimeo user videos",
+          "params": ["username"]
+        }
+      ]
+    },
+    "chinese": {
+      "name": "Chinese Platforms",
+      "description": "Popular Chinese platform feeds",
+      "routes": [
+        {
+          "route": "/weibo/user/:uid",
+          "example": "https://rsshub.app/weibo/user/1192329374",
+          "description": "Weibo user posts",
+          "params": ["uid"],
+          "notes": "User ID (UID) can be found in profile URL"
+        },
+        {
+          "route": "/weibo/user/:uid/:displayArticle",
+          "example": "https://rsshub.app/weibo/user/1192329374/1",
+          "description": "Weibo user posts with article display",
+          "params": ["uid", "displayArticle"]
+        },
+        {
+          "route": "/zhihu/people/activities/:id",
+          "example": "https://rsshub.app/zhihu/people/activities/kqx1987",
+          "description": "Zhihu user activities",
+          "params": ["id"]
+        },
+        {
+          "route": "/zhihu/zhuanlan/:id",
+          "example": "https://rsshub.app/zhihu/zhuanlan/pinapps",
+          "description": "Zhihu column articles",
+          "params": ["id"]
+        },
+        {
+          "route": "/zhihu/hotlist",
+          "example": "https://rsshub.app/zhihu/hotlist",
+          "description": "Zhihu hot questions",
+          "params": []
+        },
+        {
+          "route": "/zhihu/daily",
+          "example": "https://rsshub.app/zhihu/daily",
+          "description": "Zhihu Daily",
+          "params": []
+        },
+        {
+          "route": "/xiaohongshu/user/:user_id",
+          "example": "https://rsshub.app/xiaohongshu/user/5f2f7e0a000000000101c7c7",
+          "description": "Xiaohongshu (Little Red Book) user posts",
+          "params": ["user_id"]
+        },
+        {
+          "route": "/wechat/mp/:id",
+          "example": "https://rsshub.app/wechat/mp/MzA5MzQyNzQyMQ",
+          "description": "WeChat Official Account articles",
+          "params": ["id"],
+          "notes": "Biz ID from account info page"
+        }
+      ]
+    }
+  }
+}
