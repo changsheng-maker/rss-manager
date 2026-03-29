@@ -1,0 +1,98 @@
+{
+  "_description": "Trending content sources by category",
+  "_version": "1.0.0",
+  "categories": {
+    "ai": {
+      "name": "AI & Machine Learning",
+      "sources": [
+        {
+          "id": "github-trending-ml",
+          "name": "GitHub Trending ML",
+          "url": "https://rsshub.app/github/trending/daily/python",
+          "type": "trending"
+        },
+        {
+          "id": "reddit-ml",
+          "name": "r/MachineLearning",
+          "url": "https://rsshub.app/reddit/r/MachineLearning",
+          "type": "hot"
+        },
+        {
+          "id": "hn-ai",
+          "name": "Hacker News AI",
+          "url": "https://hnrss.org/newest?q=artificial+intelligence",
+          "type": "search"
+        }
+      ]
+    },
+    "startups": {
+      "name": "Startups & Entrepreneurship",
+      "sources": [
+        {
+          "id": "producthunt",
+          "name": "Product Hunt Daily",
+          "url": "https://rsshub.app/producthunt",
+          "type": "trending"
+        },
+        {
+          "id": "reddit-startups",
+          "name": "r/startups",
+          "url": "https://rsshub.app/reddit/r/startups",
+          "type": "hot"
+        },
+        {
+          "id": "hn-show",
+          "name": "Show HN",
+          "url": "https://hnrss.org/show",
+          "type": "new"
+        }
+      ]
+    },
+    "tech": {
+      "name": "Technology",
+      "sources": [
+        {
+          "id": "github-trending",
+          "name": "GitHub Trending",
+          "url": "https://rsshub.app/github/trending/daily",
+          "type": "trending"
+        },
+        {
+          "id": "hackernews",
+          "name": "Hacker News Top",
+          "url": "https://rsshub.app/hackernews",
+          "type": "hot"
+        },
+        {
+          "id": "reddit-tech",
+          "name": "r/technology",
+          "url": "https://rsshub.app/reddit/r/technology",
+          "type": "hot"
+        }
+      ]
+    },
+    "dev": {
+      "name": "Development",
+      "sources": [
+        {
+          "id": "github-trending-js",
+          "name": "GitHub Trending JS/TS",
+          "url": "https://rsshub.app/github/trending/daily/typescript",
+          "type": "trending"
+        },
+        {
+          "id": "reddit-programming",
+          "name": "r/programming",
+          "url": "https://rsshub.app/reddit/r/programming",
+          "type": "hot"
+        },
+        {
+          "id": "devto-top",
+          "name": "Dev.to Top",
+          "url": "https://rsshub.app/dev.to/top/week",
+          "type": "top"
+        }
+      ]
+    }
+  }
+}
