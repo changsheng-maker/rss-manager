@@ -119,23 +119,23 @@ class HTMLReportGenerator:
         """Premium light theme CSS."""
         return """
         :root {
-            --bg: #ffffff;
-            --surface: #fafafa;
-            --surface-hover: #f4f4f5;
-            --border: #e4e4e7;
-            --border-hover: #d4d4d8;
-            --text: #18181b;
-            --text-2: #52525b;
-            --text-3: #a1a1aa;
-            --accent: #0ea5e9;
-            --accent-dim: rgba(14, 165, 233, 0.1);
+            --bg: #faf8f5;
+            --surface: #fffef9;
+            --surface-hover: #f5f0e8;
+            --border: #e8e2d9;
+            --border-hover: #d4cbc0;
+            --text: #3d3528;
+            --text-2: #6b6152;
+            --text-3: #a39a8a;
+            --accent: #b45309;
+            --accent-dim: rgba(180, 83, 9, 0.1);
             --gold: #d97706;
-            --gold-dim: rgba(217, 119, 6, 0.1);
-            --silver: #737373;
-            --silver-dim: rgba(115, 115, 115, 0.1);
-            --bronze: #ea580c;
-            --bronze-dim: rgba(234, 88, 12, 0.1);
-            --green: #16a34a;
+            --gold-dim: rgba(217, 119, 6, 0.12);
+            --silver: #78716c;
+            --silver-dim: rgba(120, 113, 108, 0.1);
+            --bronze: #c2410c;
+            --bronze-dim: rgba(194, 65, 12, 0.1);
+            --green: #15803d;
             --radius: 10px;
         }
 
